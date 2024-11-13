@@ -1,1 +1,1 @@
-# fit-ctu-masters-thesis
+# Diplomová práce, FIT ČVUT
