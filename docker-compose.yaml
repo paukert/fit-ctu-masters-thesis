@@ -1,0 +1,13 @@
+services:
+  latex:
+    image: texlive/texlive
+    working_dir: /text
+    command:
+      - /bin/bash
+      - -c
+      - |
+        latexmk -pdfxe -shell-escape --output-directory=output ctufit-thesis.tex
+        mv output/ctufit-thesis.pdf ctufit-thesis.pdf
+
+    volumes:
+      - .:/text

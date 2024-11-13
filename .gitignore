@@ -20,3 +20,5 @@ ctufit-thesis.pdf
 pdfa.xmpi
 
 .DS_Store
+*.xdv
+*.bcf-SAVE-ERROR
