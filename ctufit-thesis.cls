@@ -173,10 +173,10 @@
 
 % title page
 \renewcommand{\maketitle}{\begin{titlepage}%
-\newgeometry{left=67mm,top=80mm,right=40mm}%\thispagestyle{empty}%
+\newgeometry{left=62mm,top=80mm,right=40mm}%\thispagestyle{empty}%
 \noindent{\large\noindent\thectufitthesistype}
 \vskip 3mm
-\noindent{\noindent\huge\bfseries\color{black}\begin{flushleft}\begin{onehalfspace}\MakeUppercase{\thectufittitle}\end{onehalfspace}\end{flushleft}}
+\noindent{\noindent\LARGE\bfseries\color{black}\begin{flushleft}\begin{onehalfspace}\MakeUppercase{\thectufittitle}\end{onehalfspace}\end{flushleft}}
 \vskip 35mm
 \noindent{\large  \bfseries \thectufitauthorfull}
 
