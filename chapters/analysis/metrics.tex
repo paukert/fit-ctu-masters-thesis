@@ -1,1 +1,18 @@
 \section{Metriky}
+Následující podkapitola je věnována popisu metrik, pomocí nichž je možné porovnávat úroveň aktivity a výkonnost vývojářů v různých oblastech vývoje softwaru. \cite{a-study-of-the-characteristics-of-developers-activities-in-github}\cite{measuring-the-individual-performance-of-a-software-development-team} S ohledem na cíle práce se primárně zaměřuji na metriky, pro které je možné získat data z nástrojů GitHub a GitLab.
+
+\subsection{Aktivita u tasků}
+Pojmem task v tomto případě rozumím sourhn informací, které obsahují popis požadovaných úprav, informaci o typu, stavu, prioritě a případně i dalších souvisejících věcech. Množina stavů by měla minimálně obsahovat stav „otevřeno“ a „uzavřeno“, kde stav „otevřeno“ reprezentuje situaci, kdy všechny požadované úpravy ještě nebyly zapracovány nebo se čeká na kontrolu od ostatních vývojářů nebo testerů. Pokud všichni členové týmu dokončili práci na daném tasku, tak by se jeho stav měl změnit na „uzavřeno“. V nástrojích GitHub a GitLab se tasky většinou evidují ve formě issues, u kterých je možné diskutovat s ostatními uživateli pomocí komentářů.
+
+Ve spojení s tasky bychom tedy mezi možné metriky mohli zařadit počet založených a uzavřených tasků nebo počet napsaných komentářů. Některé z těchto metrik avšak nejsou pro porovnávání výkonnosti vývojářů ve většině případů moc vypovídající. Prvním z problémů by mohl být fakt, že vývojáři většinou nejsou autory tasků, protože o to se starají spíše analytici nebo produktoví manažeři. Podobný problém nastává u metriky počtu uzavřených tasků, neboť ty většinou uzavírají testeři systémů. V neposlední řadě by také mohl být problém se získáním těchto dat v souvislosti se systémy GitHub a GitLab, poněvadž větší týmy často tasky evidují v jiných systémech, které obsahují pokročilejší funkcionality. Příkladem takového systému by mohl být například YouTrack, Jira nebo Redmine.\todo{přidat zdroje}
+
+\subsection{Úprava zdrojového kódu}
+TODO: LoC (dle typu souboru), commity (message, popis), průměrná velikost commitu (pro zajímavost třeba i maximální) 
+
+\subsection{Code review}
+Code review je proces, při kterém členové vývojového týmu kontrolují kód napsaný jinými vývojáři. Cílem tohoto procesu je zajistit dobrou kvalitu kódu -- minimalizovat počet případných chyb, zlepšit jeho čitelnost a konzistenci. Pro code review se často využívají nástroje jako GitHub a GitLab, které tento proces podporují svou funkcionalitou v rámci pull requestů\footnote{V GitLabu se místo pojmu „Pull request“ využívá pojem „Merge request“}.
+
+TODO: dopsat co všechno lze měřit z oblasti code review
+
+\subsection{Výběr metrik}
+S ohledem na různé druhy činností prováděných během vývoje softwaru si na rozdíl například od Measuring the Individual Performance of A Software Development Team (\cite{measuring-the-individual-performance-of-a-software-development-team}) nedávám za cíl vybrat nebo vytvořit jedinou metriku, která by se snažila pomocí jednoho čísla popsat celkovou výkonnost vývojářů, ale vybral jsem si několik metrik z oblasti code review a úpravy zdrojového kódu, které lze pomocí API získat jak z nástroje GitHub, tak z nástroje GitLab.
