@@ -7,14 +7,30 @@ Pojmem task v tomto případě rozumím sourhn informací, které obsahují popi
 Ve spojení s tasky bychom tedy mezi možné metriky mohli zařadit počet založených a uzavřených tasků nebo počet napsaných komentářů. Některé z těchto metrik avšak nejsou pro porovnávání výkonnosti vývojářů ve většině případů moc vypovídající. Prvním z problémů by mohl být fakt, že vývojáři většinou nejsou autory tasků, neboť ty spíše zakládají analytici nebo produktoví manažeři. Podobný problém nastává u metriky počtu uzavřených tasků, protože ty většinou po otestování uzavírají testeři systémů. V neposlední řadě by také mohl být problém se získáním těchto dat v souvislosti se systémy GitHub a GitLab, poněvadž větší týmy často tasky evidují v jiných systémech, které obsahují pokročilejší funkcionality. Příkladem takového systému by mohl být například YouTrack, Jira nebo Redmine.\todo{přidat zdroje}
 
 \subsection{Úprava zdrojového kódu}
-V souvislosti s úpravou zdrojového kódu bych jako první metriku chtěl zmínit počet (upravených) řádků (LOC). Počet řádků byla jedna z prvních široce využívaných metrik pro porovnání velikosti systémů a produktivity vývojářů. \cite{LOC-parareda} Výhody této metriky zahrnovaly využitelnost u různých programovacích jazyků, nízkou časovou náročnost na její získání a například také jednoduchost vysvětlení této metriky i lidem, kteří nepracují jako vývojáři. Na druhou stranu má tato metrika ale i několik nevýhod, kvůli nimž je využívání počtu řádků jako primárního indikátoru produktivity vývojářů značně problematické. Počet řádků totiž nic neříká o tom, jak kvalitní je napsaný kód a také je možné, že stejné funkcionality by bylo možné dosáhnout s výrazně menším počtem řádků při využití jiných konstruktů programovacího jazyka. Pro zvýšení vypovídající hodnoty této metriky by bylo potřeba předzpracovat data a například odebrat nedosažitelný kód, sjednotit formátování, ignorovat prázdné řádky a podobně. V neposlední řadě může být problematické porovnávání počtu řádků mezi projekty, které využívají odlišné programovací jazyky, poněvadž každý z jazyků bude pravděpodobně vývojářům poskytovat odlišné funkce a bude vyžadovat odlišný způsob zápisu zdrojového kódu.
+V souvislosti s úpravou zdrojového kódu bych jako první metriku chtěl zmínit počet (upravených) řádků (LOC). Počet řádků byla jedna z prvních široce využívaných metrik pro porovnání velikosti systémů a produktivity vývojářů. \cite{LOC-parareda} Výhody této metriky zahrnovaly využitelnost u různých programovacích jazyků, nízkou časovou náročnost na její získání a například také jednoduchost vysvětlení této metriky i lidem z jiných oborů. Na druhou stranu má tato metrika ale i několik nevýhod, kvůli nimž je využívání počtu řádků jako primárního indikátoru produktivity vývojářů značně problematické. Počet řádků totiž nic neříká o tom, jak kvalitní je výsledný kód a také je možné, že stejné funkcionality by bylo možné dosáhnout s výrazně menším počtem řádků při využití jiných konstruktů programovacího jazyka. Pro zvýšení vypovídající hodnoty této metriky by bylo potřeba data předzpracovávat a například odebrat nedosažitelný kód, sjednotit formátování, ignorovat prázdné řádky a podobně. V neposlední řadě může být problematické porovnávání počtu řádků mezi projekty, které využívají odlišné programovací jazyky, poněvadž každý z jazyků bude pravděpodobně vývojářům poskytovat odlišné funkce a bude vyžadovat odlišný způsob zápisu zdrojového kódu.
 
-TODO: commity (message, popis), průměrná velikost commitu (pro zajímavost třeba i maximální), počet vytvořených PR
+
+Commit title, commit description - délka, existence popisu
+
+Velikost commitu a PR  - průměrný počet přidaných řádků, průměrný počet odebraných řádků, pro zajímavost třeba i maximální
+
+Počet vytvořených PR
 
 \subsection{Code review}
 Code review je proces, při kterém členové vývojového týmu kontrolují kód napsaný jinými vývojáři. Cílem tohoto procesu je zajistit dobrou kvalitu kódu -- minimalizovat počet případných chyb, zlepšit jeho čitelnost a konzistenci. Pro code review se často využívají nástroje jako GitHub a GitLab, které tento proces podporují svou funkcionalitou v rámci pull requestů\footnote{V GitLabu se místo pojmu „Pull request“ využívá pojem „Merge request“}.
 
-TODO: dopsat co všechno lze měřit z oblasti code review
+V souvislosti s code review lze evidovat mimo jiné následující metriky:
+\begin{itemize}
+    \item počet vytvořených diskuzí (vláken)
+    \item počet přidaných komentářů
+    \item počet vyřešených diskuzí
+    \item čas do mergnutí pull requestu, u kterého je uživatel jako reviewer
+    \item čas do mergnutí uživatelova pull requestu
+\end{itemize}
 
 \subsection{Výběr metrik}
-S ohledem na různé druhy činností prováděných během vývoje softwaru si na rozdíl například od Measuring the Individual Performance of A Software Development Team (\cite{measuring-the-individual-performance-of-a-software-development-team}) nedávám za cíl vybrat nebo vytvořit jedinou metriku, která by se snažila pomocí jednoho čísla popsat celkovou výkonnost vývojářů, ale vybral jsem si několik metrik z oblasti code review a úpravy zdrojového kódu, které lze pomocí API získat jak z nástroje GitHub, tak z nástroje GitLab.
+S ohledem na různé druhy činností prováděných během vývoje softwaru si na rozdíl například od \cite{measuring-the-individual-performance-of-a-software-development-team} nedávám za cíl vybrat nebo vytvořit metriku, která by se snažila pomocí jednoho čísla popsat celkovou výkonnost vývojářů, ale vybral jsem si několik metrik z oblasti code review a úpravy zdrojového kódu, které lze pomocí GraphQL API získat jak z nástroje GitHub, tak z nástroje GitLab.
+
+- LoC (dle typu souboru)
+
+\cite{a-study-of-the-characteristics-of-developers-activities-in-github}

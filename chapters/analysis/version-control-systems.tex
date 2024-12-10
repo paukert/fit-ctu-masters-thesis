@@ -8,9 +8,44 @@ Vývoj platformy GitHub začal v roce 2007 a od té doby její uživatelská zá
 GitLab začal být vyvíjen jako open source projekt v roce 2011 a od té doby se na jeho vylepšování podílelo více než 3300 přispěvatelů. Aktuálně má GitLab dle odhadů přes 30 milionů registrovaných uživatelů, kteří si mohou stejně jako u GitHubu vybrat z několika nabízených cenových plánů. \cite{GitLab-about} Díky komunitní open source verzi ale GitLab nabízí i bezplatnou self-hosted variantu, která organizacím umožňuje mít všechna data pod svou kontrolou. \cite{GitLab-pricing}
 
 \subsection{APIs}
-GitHub i GitLab poskytují REST a GraphQL APIs, pomocí nichž lze provádět nejrůznější integrace, vytvářet nástroje na automatizaci procesů nebo mohou sloužit jako zdroj dat pro analytické dashboardy. Dokumentace těchto APIs jsou dostupné online na webových stránkách GitHubu \cite{GitHub-REST}\cite{GitHub-GraphQL} a GitLabu \cite{GitLab-REST}\cite{GitLab-GraphQL}. U veřejných repozitářů je možné u obou služeb přistupovat k některým endpointům bez autorizace, ale v ostatních případech je nutné využít některý z následujících způsobů pro získání potřebných oprávnění.
+GitHub i GitLab poskytují REST a GraphQL APIs, pomocí nichž lze provádět nejrůznější integrace, vytvářet nástroje na automatizaci procesů nebo mohou sloužit jako zdroj dat pro analytické dashboardy. Dokumentace těchto APIs jsou dostupné online na webových stránkách GitHubu \cite{GitHub-REST}\cite{GitHub-GraphQL} a GitLabu \cite{GitLab-REST}\cite{GitLab-GraphQL}. Ačkoliv je u veřejných repozitářů možné provádět některé akce bez autorizace, tak je s ohledem na nižší limity pro neautorizované uživatele a další omezení, které mají zabránit nedostupnosti služeb, většinou nutné zasílat informaci o autorizaci při každém požadavku. Dostupné způsoby autorizace se mezi službami GitHub a GitLab a mezi jednotlivými druhy API liší a budou popsány v podkapitole xx.\todo{přidat odkaz}
+
+\begin{description}
+    \item[REST] TODO
+    \item[GraphQL] TODO
+\end{description}
+
+Na níže uvedeném příkladu je vidět, jakým způsobem lze pomocí REST a GraphQL API u nástroje GitHub získat popis repozitáře \mintinline{text}|kuoris-v2| a název prvních deseti issues. V případě REST API by bylo potřeba provést dva GET požadavky -- první na získání popisu repozitáře a druhý pro získání názvů issues viz výpis kódu \ref{listing:rest-query-example}. Oproti tomu by v případě GraphQL API stačilo provést jeden POST podažavek na \mintinline{text}|https://api.github.com/graphql| s tělem, který je vidět na výpisu kódu \ref{listing:graphql-query-example}.
+ 
+\begin{listing}[h]
+    \caption{Ukázka získání informací o repozitáři a issues pomocí REST API}\label{listing:rest-query-example}
+    \begin{minted}{bash}
+curl https://api.github.com/repos/paukert/kuoris-v2
+curl https://api.github.com/repos/paukert/kuoris-v2/issues
+    \end{minted}
+\end{listing}
+
+\begin{listing}[h]
+    \caption{Ukázka těla požadavku pro GraphQL API}\label{listing:graphql-query-example}
+    \begin{minted}{graphql}
+query {
+    repository(owner: "paukert", name: "kuoris-v2") {
+        description
+        issues(first: 10) {
+            nodes {
+                title
+            }
+        }
+    }
+}
+    \end{minted}
+\end{listing}
+
+Ještě doprozkoumat, ale GraphQL se jeví jako zajímavější možnost.
+
+Popsat možnosti autorizace pro vybraný typ API (asi tedy GraphQL).
 
 \begin{description}
     \item[GitHub] Authenticating with a personal access token
-    \item[GitLab] \todo{popsat možných způsobů autorizace}
+    \item[GitLab]
 \end{description}
