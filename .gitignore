@@ -21,5 +21,5 @@ pdfa.xmpi
 
 .DS_Store
 sources/
-*.xdv
-*.bcf-SAVE-ERROR
+output/
+_minted/
