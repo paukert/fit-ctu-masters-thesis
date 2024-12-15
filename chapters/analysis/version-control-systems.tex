@@ -8,14 +8,14 @@ Vývoj platformy GitHub začal v roce 2007 a od té doby její uživatelská zá
 GitLab začal být vyvíjen jako open source projekt v roce 2011 a od té doby se na jeho vylepšování podílelo více než 3300 přispěvatelů. Aktuálně má GitLab dle odhadů přes 30 milionů registrovaných uživatelů, kteří si mohou stejně jako u GitHubu vybrat z několika nabízených cenových plánů. \cite{GitLab-about} Díky komunitní open source verzi ale GitLab nabízí i bezplatnou self-hosted variantu, která organizacím umožňuje mít všechna data pod svou kontrolou. \cite{GitLab-pricing}
 
 \subsection{APIs}
-GitHub i GitLab poskytují REST a GraphQL APIs, pomocí nichž lze provádět nejrůznější integrace, vytvářet nástroje na automatizaci procesů nebo mohou sloužit jako zdroj dat pro analytické dashboardy. Dokumentace těchto APIs jsou dostupné online na webových stránkách GitHubu \cite{GitHub-REST}\cite{GitHub-GraphQL} a GitLabu \cite{GitLab-REST}\cite{GitLab-GraphQL}. Ačkoliv je u veřejných repozitářů možné provádět některé akce bez autorizace, tak je s ohledem na nižší limity pro neautorizované uživatele a další omezení, které mají zabránit nedostupnosti služeb, většinou nutné zasílat informaci o autorizaci při každém požadavku. Dostupné způsoby autorizace se mezi službami GitHub a GitLab a mezi jednotlivými druhy API liší a budou popsány v podkapitole xx.\todo{přidat odkaz}
+GitHub i GitLab poskytují REST a GraphQL APIs, pomocí nichž lze provádět nejrůznější integrace, vytvářet nástroje na automatizaci procesů nebo mohou sloužit jako zdroj dat pro analytické dashboardy. Dokumentace těchto APIs jsou dostupné online na webových stránkách GitHubu \cite{GitHub-REST}\cite{GitHub-GraphQL} a GitLabu \cite{GitLab-REST}\cite{GitLab-GraphQL}. Ačkoliv je u veřejných repozitářů možné provádět některé akce bez autorizace, tak je s ohledem na nižší limity pro neautorizované uživatele a další omezení, které mají zabránit nedostupnosti služeb, většinou nutné zasílat informaci o autorizaci při každém požadavku. Dostupné způsoby autorizace se mezi službami GitHub a GitLab a mezi jednotlivými druhy API liší a budou popsány dále.
 
 \begin{description}
-    \item[REST] TODO
-    \item[GraphQL] TODO
+    \item[REST] Representational State Transfer je softwarová architektura pro distribuované hypermediální systémy. Je založena na vrstvené architektuře klient -- server. Mezi jeho hlavní pricipy patří bezstavovost (server si neuchovává žádný kontext mezi jednotlivými požadavky tj. požadavek od klienta musí vždy obsahovat veškeré informace, které jsou potřebné pro jeho zpracování), uniformní rozhraní založené na zdrojích a cachovatelnost. \cite{REST} Ačkoliv REST není vázán na konkrétní komunikační protokol, tak v dnešní době se využívá především s protokolem HTTP.\todo{Možná ještě více rozepsat?}
+    \item[GraphQL] GraphQL je dotazovací jazyk, který originálně vznikl pro potřeby společnosti Facebook (dnes Meta Platforms) v roce 2012. Návrh specifikace GraphQL byl v roce 2015 vydán pod open source licencí a od roku 2019 se o ni stará GraphQL Foundation. Pomocí GraphQL je možné stejně jako pomocí REST API číst, vytvářet a libovolně modifikovat záznamy. \cite{GraphQL} Jako komunikační protokol je opět nejčastěji využívá Hypertext Transfer Protocol. \cite{GraphQL-HTTP} GraphQL je založen na typech \cite{GraphQL} a za jednu z jeho hlavních výhod bych označil skutečnost, že si klient sám určuje, která data se mu mají v odpovědi zaslat viz příklad níže.
 \end{description}
 
-Na níže uvedeném příkladu je vidět, jakým způsobem lze pomocí REST a GraphQL API u nástroje GitHub získat popis repozitáře \mintinline{text}|kuoris-v2| a název prvních deseti issues. V případě REST API by bylo potřeba provést dva GET požadavky -- první na získání popisu repozitáře a druhý pro získání názvů issues viz výpis kódu \ref{listing:rest-query-example}. Oproti tomu by v případě GraphQL API stačilo provést jeden POST podažavek na \mintinline{text}|https://api.github.com/graphql| s tělem, který je vidět na výpisu kódu \ref{listing:graphql-query-example}.
+V následujícím příkladu je vidět, jakým způsobem lze pomocí REST a GraphQL API u nástroje GitHub získat popis repozitáře \mintinline{text}|kuoris-v2| a název prvních deseti issues. V případě REST API by bylo potřeba provést dva GET požadavky -- první na získání popisu repozitáře a druhý pro získání názvů issues viz výpis kódu \ref{listing:rest-query-example}. Oproti tomu by v případě GraphQL API stačilo provést jeden POST podažavek na \mintinline{text}|https://api.github.com/graphql| s tělem, který je vidět i s odpovědí od serveru na výpisu kódu \ref{listing:graphql-query-example}. I na tomto malém příkladu je vidět, že využití GraphQL API může být v mnoha případech efektivnější v porovnání s REST API. Efektivnost nespočívá pouze v menším počtu požadavků, ale i ve velikosti přenášených dat, neboť jak jsem již dříve zmiňoval, tak v případě GraphQL jsou klientovi zasílány pouze informace, o které si sám požádá.
  
 \begin{listing}[h]
     \caption{Ukázka získání informací o repozitáři a issues pomocí REST API}\label{listing:rest-query-example}
@@ -25,18 +25,37 @@ curl https://api.github.com/repos/paukert/kuoris-v2/issues
     \end{minted}
 \end{listing}
 
-\begin{listing}[h]
-    \caption{Ukázka těla požadavku pro GraphQL API}\label{listing:graphql-query-example}
+\begin{listing}[h!]
+    \caption{Ukázka těla požadavku a odpověď z GraphQL API}\label{listing:graphql-query-example}
     \begin{minted}{graphql}
 query {
-    repository(owner: "paukert", name: "kuoris-v2") {
-        description
-        issues(first: 10) {
-            nodes {
-                title
-            }
-        }
+  repository(owner: "paukert", name: "kuoris-v2") {
+    description
+    issues(first: 10) {
+      nodes {
+        title
+      }
     }
+  }
+}
+    \end{minted}
+    \begin{minted}{json}
+{
+  "data": {
+    "repository": {
+      "description": "Bachelor's Thesis, FIT CTU",
+      "issues": {
+        "nodes": [
+          {
+            "title": "Docker-compose pro celou aplikaci"
+          },
+          {
+            "title": "Vytvořit šablony pro chybové stránky"
+          }
+        ]
+      }
+    }
+  }
 }
     \end{minted}
 \end{listing}
