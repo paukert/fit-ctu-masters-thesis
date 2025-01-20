@@ -1,4 +1,4 @@
-\section{Měření produktivity vývojářů}
+\section{Měření výkonnosti vývojářů}
 Následující podkapitola je věnována popisu metrik, pomocí nichž je možné porovnávat úroveň aktivity a výkonnost vývojářů v různých oblastech vývoje softwaru. S ohledem na cíle práce budou primárně přiblíženy metriky, pro které je možné získat data z nástrojů GitHub a GitLab.
 
 \subsection{Aktivita u tasků}
@@ -45,9 +45,16 @@ SPACE je framework pro porozumění produktivitě vývojářů. Byl navržen zá
     Aktivita je počet akcí nebo výstupů dokončených v průběhu výkonu práce. Příkladem měřitelných aktivit může být počet vytvořených specifikací, počet pull requestů, commitů nebo počet provedených testů a nasazení nových verzí. Některé aktivity jako účast na schůzkách nebo konzultace s ostatními členy týmu avšak jednoduše měřit a kvantifikovat nelze a i z toho důvodu by měřitelné aktivity neměly být jediným podkladem pro důležitá rozhodnutí nebo pro celkové zhodnocení práce týmu.
     \item \textbf{Komunikace a spolupráce}\\
     Nedílnou součástí vývoje softwaru je i komunikace a spolupráce s ostatními členy týmu a dalšími stranami. Pro efektivní spolupráci členů týmu je důležitá transparentnost a vzájemný přehled o prováděných činnostech. Ačkoliv nutnost komunikace s dalšími členy týmu může v daný okamžik ovlivnit produktivitu jednotlivce, tak v celkovém měřítku má efektivní spolupráce pozitivní vliv na rychlost odbavování pull requestů, kvalitu kódu a produktivitu týmu jako celku.
-    \item \textbf{Efektivita a plynulost}\\
+    \item \textbf{Efektivita a flow}\\
     Zachycuje schopnost dokončit nebo pokročit v práci s minimálními počtem přerušení z individuálního, ale i skupinového pohledu. Tato dimenze může zahrnovat souhru aktivit mezi vývojovými týmy a skutečnost, zda kontinuálně dochází k pokrokům v prováděných činnostech. Někteří lidé si pro zvýšení efektivity vyhrazují časové bloky, kdy se soustředí na své úkoly a nechtějí být vyrušováni od své práce.
 \end{enumerate}
+
+\todo{EXAMPLE S CODE REVIEW?}
+
+Pro získání užitečných výstupů ale není potřeba sledovat metriky ze všech pěti dimenzí. Autoři SPACE frameworku dokonce varují před sledováním velkého počtu metrik se stanovenými cíly, neboť vysoký počet cílů může u vývojářů vzbuzovat pocit, že jich nemohou dosáhnout. Pro vypovídající výstupy, které mohou sloužit například jako podklady pro rozhodnutí o změnách ve vývojovém procesu, je doporučeno sledovat pár metrik minimálně ze tří různých dimenzí.
+
+\subsection{DORA metriky}
+TODO
 
 \subsection{Výběr metrik}
 S ohledem na různé druhy činností prováděných během vývoje softwaru si na rozdíl například od \cite{measuring-the-individual-performance-of-a-software-development-team} tato práce nedává za cíl vybrat nebo vytvořit metriku, která by se snažila pomocí jednoho čísla popsat celkovou výkonnost vývojářů. Dle SPACE frameworku není ani možné produktivitu vývojářů vysvětlovat a měřit pomocí jedné dimenze (metriky). \cite{space} Z tohoto důvodu bylo vybráno několik z dříve představených metrik z oblasti code review a úpravy zdrojového kódu, které lze pomocí GraphQL API získat jak z nástroje GitHub, tak z nástroje GitLab.
