@@ -7,7 +7,7 @@ Pojmem task je v tomto případě rozuměn sourhn informací, které obsahují p
 Ve spojení s tasky je tedy mezi metriky možné zařadit počet založených a uzavřených tasků nebo počet napsaných komentářů. Některé z těchto metrik avšak nejsou pro porovnávání výkonnosti vývojářů ve většině případů moc vypovídající. Prvním z problémů by mohl být fakt, že vývojáři většinou nejsou autory tasků, neboť ty spíše zakládají analytici nebo produktoví manažeři. Podobný problém nastává u metriky počtu uzavřených tasků, protože ty většinou po otestování uzavírají testeři systémů. V neposlední řadě by také mohl být problém se získáním těchto dat v souvislosti se systémy GitHub a GitLab, poněvadž větší týmy často tasky evidují v jiných systémech, které obsahují pokročilejší funkcionality. Příkladem takového systému by mohl být například YouTrack, Jira nebo Redmine. \cite{YouTrack, Jira, Redmine}
 
 \subsection{Úprava zdrojového kódu}
-Jednou z prvních široce využívaných metrik pro porovnání velikosti systémů a produktivity vývojářů byl počet (upravených) řádků zdrojového kódu (LOC). \cite{LOC-parareda} Výhody této metriky zahrnovaly využitelnost u různých programovacích jazyků, nízkou časovou náročnost na její získání a například také jednoduchost vysvětlení této metriky i lidem z jiných oborů. Na druhou stranu má tato metrika ale i několik nevýhod, kvůli nimž je využívání počtu řádků jako primárního indikátoru produktivity vývojářů značně problematické. Počet řádků totiž nic neříká o tom, jak kvalitní je výsledný kód a také je možné, že stejné funkcionality by bylo možné dosáhnout s výrazně menším počtem řádků při využití jiných konstruktů programovacího jazyka. Pro zvýšení vypovídající hodnoty této metriky by bylo potřeba data předzpracovávat a například odebrat nedosažitelný kód, sjednotit formátování, ignorovat prázdné řádky a podobně. V neposlední řadě může být problematické porovnávání počtu řádků mezi projekty, které využívají odlišné programovací jazyky, poněvadž každý z jazyků bude pravděpodobně vývojářům poskytovat odlišné funkce a bude vyžadovat odlišný způsob zápisu zdrojového kódu. \cite{LOC-parareda}
+Jednou z prvních široce využívaných metrik pro porovnání velikosti systémů a produktivity vývojářů byl počet (upravených) řádků zdrojového kódu (LOC). \cite{LOC-parareda} Výhody této metriky zahrnovaly využitelnost u různých programovacích jazyků, nízkou časovou náročnost na její získání a například také jednoduchost vysvětlení této metriky i lidem z jiných oborů. Na druhou stranu má tato metrika ale i několik nevýhod, kvůli nimž je využívání počtu řádků jako primárního indikátoru produktivity vývojářů značně problematické. Počet řádků totiž nic neříká o tom, jak kvalitní je výsledný kód a také je možné, že stejné funkcionality by bylo možné dosáhnout s výrazně menším počtem řádků při využití jiných konstruktů programovacího jazyka. Pro zvýšení vypovídající hodnoty této metriky by bylo potřeba data předzpracovávat a například odebrat nedosažitelný kód, sjednotit formátování, ignorovat prázdné řádky a podobně. V neposlední řadě může být problematické porovnávání počtu řádků mezi projekty, které využívají odlišné programovací jazyky, poněvadž každý z jazyků bude pravděpodobně vývojářům poskytovat odlišné funkce a bude vyžadovat jiný způsob zápisu zdrojového kódu. \cite{LOC-parareda}
 
 \begin{description}
     \item[Commit] Commit je operace, která zachycuje provedené změny v obsahu souborů do repozitáře. Je to základní jednotka práce ve verzovacích systémech. Díky commitům je možné sledovat, kdy, co a proč se měnilo. 
@@ -53,7 +53,18 @@ SPACE je framework pro porozumění produktivitě vývojářů. Byl navržen zá
 
 Pro získání užitečných výstupů ale není potřeba sledovat metriky ze všech pěti dimenzí. Autoři SPACE frameworku dokonce varují před sledováním velkého počtu metrik se stanovenými cíly, neboť vysoký počet cílů může u vývojářů vzbuzovat pocit, že jich nemohou dosáhnout. Pro vypovídající výstupy, které mohou sloužit například jako podklady pro rozhodnutí o změnách ve vývojovém procesu, je doporučeno sledovat pár metrik minimálně ze tří různých dimenzí.
 
-\subsection{DORA metriky}
-TODO
+\subsection[DORA metriky]{DORA metriky \cite{DORA-metrics, DORA-metrics-framework}}
+Tým DevOps Research and Assessment identifikoval čtyři klíčové metriky pro měření efektivity DevOps procesů u vývojových týmů.
 
-\cite{a-study-of-the-characteristics-of-developers-activities-in-github}
+\begin{enumerate}
+    \item \textbf{Frekvence nasazování}\\
+    Zachycuje, jak často je kód nasazován do produkčního prostředí. Díky častějšímu nasazování jsou uživatelům rychleji doručovány nové funkcionality a vylepšení, a tedy je i možné dříve získat zpětnou vazbu na provedené změny.
+    \item \textbf{Čas od commitnutí změn do jejich nasazení}\\
+    Jedná se o čas, který uplyne mezi commitnutím provedených změn a okamžikem, kdy je daná funkcionalita dostupná na produkčním prostředí.
+    \item \textbf{Míra selhání změn}\\
+    Zachycuje, jak často některá z provedených změn zhorší kvalitu služeb, způsobí výpadek nebo chybu, která musí být vývojáři opravena.
+    \item \textbf{Doba obnovy služby}\\
+    Metrika doba obnovy služby je čas, který trvá obnovit produkční službu po chybě nebo výpadku.
+\end{enumerate}
+
+Ačkoliv jsou DORA metriky široce uznávány jako způsob pro měření efektivnosti DevOps procesů, tak s ohledem na cíle práce jsou zde uvedeny právážně pro kompletnost. Tyto metriky totiž spíše popisují vývojový tým jako celek a jejich využití pro zjištění výkonnosti jednotlice by bylo problematické.
