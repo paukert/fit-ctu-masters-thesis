@@ -1,0 +1,27 @@
+\section{Uživatelské požadavky}
+
+\subsection{Funkční požadavky}
+Funkční požadavky popisují požadované funkcionality systému. Mohou například specifikovat, jakým způsobem bude uživatel moci pracovat se systémem, jaké procesy by měl systém podporovat a jaké budou vstupy a výstupy těchto procesů.
+
+\begin{enumerate}[label=\textcolor{decoration}{\textbf{F\arabic*}}, leftmargin=9mm]
+    \myItem{definice sledovaných uživatelů}
+	\myItem{získání dat o uživatelích}
+	\myItem{grafická prezentace dat}
+\end{enumerate}
+
+\subsection{Nefunkční požadavky}
+Nefunkční požadavky se na rozdíl od funkčních požadavků zabývají vlastnostmi a omezeními daného systému. Mohou se mezi nimi objevit požadavky, které budou podstatné jak pro samotné uživatele systému, jako například doba odezvy, zabezpečení systému, způsob zobrazování na mobilních zařízeních, tak zde mohou být uvedeny i požadavky techničtějšího charakteru, jako například použití konkrétních technologií.
+
+\begin{enumerate}[label=\textcolor{decoration}{\textbf{N\arabic*}}, leftmargin=9mm]
+    \myItem{responzivita}
+    Webová aplikace bude přizpůsobovat svůj vzhled na základě rozlišení klientského zařízení.
+
+    \myItem{zabezpečení}
+    Komunikace s aplikací bude probíhat přes šifrovaný protokol HTTPS, hesla uživatelů budou ukládána pomocí hashů, budou implementovány ochrany proti XSS, SQL injection, včetně dalších bezpečnostních mechanismů.
+
+    \myItem{výkon a dostupnost}
+    Aplikace bude schopná v jednu chvíli obsluhovat jednotky až nižší desítky uživatelů s odezvou v řádu sekund.
+
+    \myItem{právní požadavky}
+    Sledovaného nebo registrovaného uživatele bude možné anonymizovat v souladu s obecným nařízením o ochraně osobních údajů (GDPR) nebo ho bude možné odstranit včetně všech jeho dat.
+\end{enumerate}

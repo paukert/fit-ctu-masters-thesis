@@ -14,24 +14,22 @@ Jednou z prvních široce využívaných metrik pro porovnání velikosti systé
     \item[Pull request] Pull request\footnote{V GitLabu se místo pojmu „Pull request“ využívá pojem „Merge request“} je návrh na zahrnutí změn z jednoho či více commitů z jedné větve do větve jiné. Před zahrnutím změn do cílové větve je možné provádět code review viz sekce \ref{code-review}.
 \end{description}
 
+Služby GitHub i GitLab evidují počet upravených řádků v rámci dvou samostatných metrik. První z nich je počet přidaných řádků a druhou je počet odebraných řádků. Tyto metriky jsou v systémech GitHub i GitLab dostupné jak na úrovní samotných commitů, tak na úrovni pull requestů. V souvislosti s počtem řádků zdrojového kódu lze tedy například evidovat průměrný počet přidaných a odebraných řádků v rámci jednoho commitu nebo pull requestu nebo i největší commity a pull requesty.
+
+\subsection{Komunikace}
 Při práci na projektu, na kterém se podílí více vývojářů, je velice důležitá komunikace. Jedním z prvků komunikace mezi vývojáři jsou i titulky a popisy commitů, které mohou ostatním členům týmu pomoci pochopit, proč se daná část kódu měnila. Titulky a popisy commitů avšak vývojáři často odbývají kvůli nedostatku času a malé motivaci psát kvalitní popisy. Proto bylo navrženo i několik způsobů, jak titulky a popisy commitů generovat automaticky. \cite{good-commit-message}
 
 Správný titulek commitu by měl být stručný a měl by vystihovat provedené změny. Dle tvůrce verzovacího systému Git \cite{linus-commit-message}, ale například i zdrojů \cite{gitkraken-git-commit-message} a \cite{tim-pope} by maximální délka titulku měla být 72, případně pouze 50 znaků. Dodatečný kontext lze v případě potřeby napsat do popisu commitu.
-
-Velikost commitu a PR  - průměrný počet přidaných řádků, průměrný počet odebraných řádků, pro zajímavost třeba i maximální
-
-Počet vytvořených PR
 
 \subsection{Code review}\label{code-review}
 Code review je proces, při kterém členové vývojového týmu kontrolují kód napsaný jinými vývojáři. Cílem tohoto procesu je zajistit dobrou kvalitu kódu -- minimalizovat počet případných chyb, zlepšit jeho čitelnost a konzistenci. Pro code review se často využívají nástroje jako GitHub a GitLab, které tento proces podporují svou funkcionalitou v rámci pull requestů.
 
 V souvislosti s code review lze evidovat mimo jiné následující metriky:
 \begin{itemize}
-    \item počet vytvořených diskuzí (vláken)
-    \item počet přidaných komentářů
-    \item počet vyřešených diskuzí
-    \item čas do mergnutí pull requestu, u kterého je uživatel jako reviewer
-    \item čas do mergnutí uživatelova pull requestu
+    \item počet vytvořených diskuzí (vláken) od reviewerů
+    \item celkový počet přidaných komentářů
+    \item počet vyřešených diskuzí (vláken)
+    \item čas do mergnutí pull requestu (čas od vytvoření pull requestu do chvíle jeho mergnutí)
 \end{itemize}
 
 \subsection[SPACE framework]{SPACE framework \cite{space}}
