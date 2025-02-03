@@ -1,12 +1,21 @@
 \section{Uživatelské požadavky}
+Následující podkapitola se zabývá analýzou funkčních a nefunkčních požadavků kladených na novou aplikaci. Požadavky primárně vycházejí z rozhovoru se zástupcem firmy Ackee, která hledá způsob, jak měřit a porovnávat výkonnost vývojářů.
 
 \subsection{Funkční požadavky}
 Funkční požadavky popisují požadované funkcionality systému. Mohou například specifikovat, jakým způsobem bude uživatel moci pracovat se systémem, jaké procesy by měl systém podporovat a jaké budou vstupy a výstupy těchto procesů.
 
 \begin{enumerate}[label=\textcolor{decoration}{\textbf{F\arabic*}}, leftmargin=9mm]
-    \myItem{definice sledovaných uživatelů}
+    \myItem{definice a správa sledovaných uživatelů}
+    Systém bude umožňovat párování uživatelů s uživateli z platforem GitHub a GitLab. K jednomu uživateli může být ve vytvářené aplikaci přiřazeno více referencí na uživatele z platforem GitHub a GitLab. Uživatele též bude možné upravovat a mazat.
+
 	\myItem{získání dat o uživatelích}
+    V systému bude možné nastavit z jakých projektů a za jaké časové období se mají získávat data o sledovaných uživatelích. Data se následně budou automaticky stahovat ze systémů GitHub a GitLab a bude je možné získávat i zpětně (tj. i za období předcházející definici uživatelů a projektů ve vytvářené aplikaci).
+
+    \myItem{definice časově omezených výzev}
+    Administrátor systému bude moci definovat krátkodobé a dlouhodobé výzvy, za které uživatelé budou moci získávat „odznáčky“.
+
 	\myItem{grafická prezentace dat}
+    Data získaná ze systémů GitHub a GitLab budou ve webové aplikaci přehledně prezentována ve formě grafů nebo tabulek. Tyto přehledy budou dostupné jak pro jednotlivé uživatele, tak i pro definované skupiny uživatelů. Přehledy bude možné filtrovat dle období, projektu a platformy.
 \end{enumerate}
 
 \subsection{Nefunkční požadavky}
