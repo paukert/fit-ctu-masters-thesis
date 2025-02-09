@@ -122,6 +122,11 @@
 \usepackage{enumitem}
 \newcommand{\myItem}[1]{\item{\textbf{#1}}\\[1mm]}
 
+\usepackage{tabularx}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
 %%%%%%%%%%%%%%%%%%%%%%
 % DEMO CONTENTS SETTINGS END
 %%%%%%%%%%%%%%%%%%%%%%
@@ -227,6 +232,7 @@ CI/CD & Continuous Integration and Continuous Delivery\\
 DORA & DevOps Research and Assessment\\
 HTTP(S) & Hypertext Transfer Protocol (Secure)\\
 LOC & Lines of Code\\
+ORM & Object–relational Mapping\\
 PHP & PHP: Hypertext Preprocessor\\
 REST & Representational State Transfer\\
 SQL & Structured Query Language\\

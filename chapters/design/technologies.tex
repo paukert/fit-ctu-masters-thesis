@@ -1,7 +1,31 @@
 \section{Technologie}
 
 \subsection{PHP}
+PHP je skriptovací programátorský jazyk, který je určen především pro vývoj webových aplikací. Nejčastěji je PHP kód spouštěn na webovém serveru na základě požadavku od klienta, kterým může být například webový prohlížeč. Po vykonání kódu na serveru je výsledek zaslán zpět klientovi. \cite{php} Nejnovější stabilní verze PHP (ke dni 9. 2. 2025) je verze 8.4, která byla vydaná 21. listopadu 2024. \cite{php-version} Dle vývojového cyklu PHP je každá vydaná verze dva roky aktivně podporovaná formou oprav chyb a bezpečnostních aktualizací. Po tomto období jsou následně pro danou verzi po dobu dalších dvou let vydávány opravy pro kritické bezpečnostní chyby. \cite{php-version}
+ 
+Podobně jako v jiných programovacích jazycích, tak i pro jazyk PHP byla vytvořena celá řada frameworků a knihoven, které by měly usnadnit vytváření nových aplikací. Dle průzkumů provedených firmou JetBrains s.r.o. se v minulých letech mezi nejpoužívanější PHP frameworky řadil Laravel a Symfony. Framework Laravel preferovalo v minulém roce 61 \% z dotázaných 2660 vývojářů z celého světa. Druhý nejpoužívanější framework Symfony využívalo 21 \% vývojářů. \cite{php-jetbrains}
+
+\begin{table}[h]
+    \centering
+	\caption[Nejpoužívanější PHP frameworky a platformy v minulých letech]{Nejpoužívanější PHP frameworky a platformy v minulých letech \cite{php-jetbrains}}
+    \begin{tabularx}{0.95\textwidth}{|C|C|C|C|C||c|}
+    \hline
+    2020  & 2021  & 2022  & 2023  & 2024  &             \\ \hline\hline
+    50 \% & 67 \% & 58 \% & 61 \% & 61 \% & Laravel     \\ \hline
+    22 \% & 24 \% & 21 \% & 22 \% & 23 \% & WordPress   \\ \hline
+    24 \% & 22 \% & 24 \% & 21 \% & 21 \% & Symfony     \\ \hline
+    12 \% & 9 \%  & 9 \%  & 10 \% & 11 \% & CodeIgniter \\ \hline
+    9 \%  & 6 \%  & 7 \%  & 6 \%  & 8 \%  & Yii         \\ \hline
+    \end{tabularx}
+\end{table}
+
+\subsection{Laravel}
+
+\subsubsection{Eloquent ORM}
 
 \subsection{Vue.js}
 
+\subsection{Tailwind}
+
 \subsection{Highcharts}
+Highcharts je populární javascriptová knihovna pro vykreslování nejrůznějších grafů. V současnosti ji pro nejrůznější vizualizace využívá 80 ze 100 nejvějších společností na světě. \cite{Highcharts} Veškeré zdrojové kódy knihovny jsou veřejně přístupné, avšak její využití v komerčních projektech je podmíněno zakoupením odpovídající licence. Pro vzdělávací účely a další nekomerční využití je možné požádat o bezplatnou licenci. \cite{Highcharts-licences} Právě tato licence byla získána i pro vytvářenou aplikaci.
