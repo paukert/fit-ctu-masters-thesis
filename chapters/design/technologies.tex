@@ -34,7 +34,14 @@ Framework Laravel byl zvolen pro vývoj nové aplikace s ohledem na menší veli
 
 \subsection{Vue.js}
 
+\subsection{Inertia.js}
+
 \subsection{Tailwind}
 
 \subsection{Highcharts}
 Highcharts je populární javascriptová knihovna pro vykreslování nejrůznějších grafů. V současnosti ji pro nejrůznější vizualizace využívá 80 ze 100 nejvějších společností na světě. \cite{Highcharts} Veškeré zdrojové kódy knihovny jsou veřejně přístupné, avšak její využití v komerčních projektech je podmíněno zakoupením odpovídající licence. Pro vzdělávací účely a další nekomerční využití je možné požádat o bezplatnou licenci. \cite{Highcharts-licences} Právě tato licence byla získána i pro vytvářenou aplikaci.
+
+\subsection{Databáze}
+Téměř každá moderní webová aplikace komunikuje s nějakou databází. V současnosti jsou stále nejpopulárnější relační databáze, které jsou občas z důvodu využívaného dotazovacího jazyka také označovány jako SQL databáze. \cite{db-engines-ranking} Jejich základem jsou tabulky, které mají pevně danou strukturu. Jednotlivé řádky tabulky představují uložené záznamy a sloupce obsahují vlastnosti daných záznamů. \cite{relational-databases} Kromě klasických relačních databází se dnes můžeme setkat i s NoSQL databázemi, které mají své uplatnění například při ukládání nestrukturovaných či jinak specifických dat. Mezi základní typy NoSQL databází se řadí dokumentové databáze, grafové databáze, key-value databáze a wide-column úložiště. \cite{nosql}
+
+Framework Laravel přímo podporuje relační databáze MariaDB, MySQL, PostgreSQL, SQLite a SQL Server. Z NoSQL databází lze využít například MongoDB, která je v Laravelu podporována s pomocí knihovny, kterou vyvíjí samotní tvůrci MongoDB. \cite{laravel-supported-databases} Vyvíjená aplikace bude pracovat s pevně struktorovanými daty, a proto bude využita relační databáze, konkrétně byla zvolena MariaDB (LTS verze 11.4).
