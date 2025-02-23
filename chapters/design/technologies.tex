@@ -31,15 +31,32 @@ Mezi hlavní přednosti Laravelu patří jeho jednoduchost a rychlost s jakou lz
 Framework Laravel byl zvolen pro vývoj nové aplikace s ohledem na menší velikost projektu a možnost vytvoření single page aplikace založené na Vue.js s pomocí nástroje Inertia. Dalším důvodem výběru těchto technologií byla možnost získat praktické zkušenosti s jejich použitím.
 
 \subsubsection[Eloquent ORM]{Eloquent ORM \cite{laravel-eloquent}}
+Jednou z hlavních součástí Laravel frameworku je Eloquent, který umožňuje objektově relační mapování (ORM). Při vývoji aplikací v objektově orientovaných jazycích se často využívají objekty, které sdružují vlastnosti předmětů podobně jako tomu je v reálném světě. Tento přístup k datům však neodpovídá tomu, jakým způsobem se data ukládají v relačních databázích. V nich je jeden konkrétní objekt reprezentován jako jeden řádek s odpovídajícím počtem sloupců. Rozdíly mezi těmito přístupy vyrovnává právě ORM, které zajišťuje automatickou konverzi dat mezi objekty a relační databází.
+
+Eloquent implementuje návrhový vzor active record, který v rámci jedné třídy spojuje business logiku s databázovými operacemi. Při využití Eloquent ORM je tedy každá entita a databázová tabulka reprezentována stejnou PHP třídou, pomocí níž je možné provádět CRUD operace s odpovídajícími daty v databázi. Kromě základních operací umožňuje Eloquent i definování a získávání dat z relací mezi jednotlivými entitami.
+
+%Rozdíl mezi návrhovými vzory active record a data mapper je znázorněn na obrázku \ref{figure:active-record-vs-data-mapper}.
+%
+%\begin{figure}[h]
+%    \caption{Rozdíl mezi návrhovým vzorem active record a data mapper}
+%    \label{figure:active-record-vs-data-mapper}
+%    \centering
+%    \includegraphics[width=0.96\linewidth]{images/active-record-vs-data-mapper.pdf}
+%\end{figure}
 
 \subsection{Vue.js}
 
-\subsection{Inertia.js}
+\subsection{Inertia}
+Jedno z hlavních rozhodnutí při vývoji nové aplikace se týká její architektury. V podkapitole \ref{section:architecture} byla představena monolitická architektura společně s architekturou mikroslužeb. Při vývoji aplikace pomocí Laravel frameworku je možné se držet MVC architektury a využít šablonovací systém Blade nebo je možné vytvořit pouze API, které bude využívat například single page aplikace napsaná ve frameworku Vue.js nebo React. Kromě těchto možností je však možné využít nástroj Inertia, který kombinuje přístup z obou dříve popsaných řešení.
+
+S pomocí nástroje Inertia lze vytvářet webové aplikace velice podobným způsobem jako při využití standardních server-side frameworků. Ke controllerům, middlewaru, autentizaci, autorizaci a mnoha dalším oblastem lze přistupovat úplně totožně, avšak místo renderování PHP šablon jsou klientovi zaslány JavaScriptové komponenty napsané například ve Vue.js. \cite{inertia}
+
+Vracet JavaScriptové komponenty by však samo o sobě nestačilo pro docílení stejného chování jako u single page aplikací. Aby při procházení aplikace nedocházelo k opětovnému načítání celé stránky, tak Inertia poskytuje JavaScriptovou \mintinline{text}|Link| komponentu, která nahrazuje klasické požadavky za XHR požadavky. Server následně při zpracování takového požadavku nezasílá klientovi kompletní HTML, ale pouze JSON odpověď, která obsahuje název požadované JavaScriptové komponenty a data potřebná pro její zobrazení. Inertia poté už pouze dynamicky vymění starou komponentu za novou a aktualizuje historii prohlížeče. \cite{inertia}
 
 \subsection{Tailwind}
 
 \subsection{Highcharts}
-Highcharts je populární javascriptová knihovna pro vykreslování nejrůznějších grafů. V současnosti ji pro nejrůznější vizualizace využívá 80 ze 100 nejvějších společností na světě. \cite{Highcharts} Veškeré zdrojové kódy knihovny jsou veřejně přístupné, avšak její využití v komerčních projektech je podmíněno zakoupením odpovídající licence. Pro vzdělávací účely a další nekomerční využití je možné požádat o bezplatnou licenci. \cite{Highcharts-licences} Právě tato licence byla získána i pro vytvářenou aplikaci.
+Highcharts je populární JavaScriptová knihovna pro vykreslování nejrůznějších grafů. V současnosti ji pro nejrůznější vizualizace využívá 80 ze 100 nejvějších společností na světě. \cite{Highcharts} Veškeré zdrojové kódy knihovny jsou veřejně přístupné, avšak její využití v komerčních projektech je podmíněno zakoupením odpovídající licence. Pro vzdělávací účely a další nekomerční využití je možné požádat o bezplatnou licenci. \cite{Highcharts-licences} Právě tato licence byla získána i pro vytvářenou aplikaci.
 
 \subsection{Databáze}
 Téměř každá moderní webová aplikace komunikuje s nějakou databází. V současnosti jsou stále nejpopulárnější relační databáze, které jsou občas z důvodu využívaného dotazovacího jazyka také označovány jako SQL databáze. \cite{db-engines-ranking} Jejich základem jsou tabulky, které mají pevně danou strukturu. Jednotlivé řádky tabulky představují uložené záznamy a sloupce obsahují vlastnosti daných záznamů. \cite{relational-databases} Kromě klasických relačních databází se dnes můžeme setkat i s NoSQL databázemi, které mají své uplatnění například při ukládání nestrukturovaných či jinak specifických dat. Mezi základní typy NoSQL databází se řadí dokumentové databáze, grafové databáze, key-value databáze a wide-column úložiště. \cite{nosql}
