@@ -60,4 +60,4 @@ query {
     \end{minted}
 \end{listing}
 
-Pro autentizaci požadavku na GitLab GraphQL API lze využít osobní, projektový, skupinový nebo OAuth 2.0 token, který musí mít nastaven správný scope. Token je možné zaslat v hlavičkách požadavku nebo pomocí query parametru. \cite{GitLab-auth} U služby GitHub lze autentizaci provést pomocí osobního přístupového tokenu, případně s využitím GitHub nebo OAuth App. \cite{GitHub-auth}
+Pro autentizaci požadavku na GitLab REST a GraphQL API lze využít session cookie nebo se lze autentizovat pomocí osobního, projektového\footnote{Projektové přístupové tokeny jsou podporovány pouze v placených plánech nebo na self-hosted instancích.}, skupinového\footnote{Skupinové přístupové tokeny jsou podporovány pouze v placených plánech.} případně OAuth 2.0 tokenu, který musí mít nastaven správný scope. Přístupový token je možné zaslat v hlavičkách požadavku nebo pomocí query parametru. \cite{GitLab-REST-auth, GitLab-auth} U služby GitHub lze autentizaci jak pro REST API, tak pro GraphQL API provést pomocí osobního přístupového tokenu, případně pomocí tokenu vygenerovaného s využitím GitHub App. \cite{GitHub-REST-auth, GitHub-auth}
