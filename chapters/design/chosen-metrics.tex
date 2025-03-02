@@ -1,4 +1,23 @@
 \section{Výběr metrik}
-S ohledem na různé druhy činností prováděných během vývoje softwaru si na rozdíl například od \cite{measuring-the-individual-performance-of-a-software-development-team} tato práce nedává za cíl vybrat nebo vytvořit metriku, která by se snažila pomocí jednoho čísla popsat celkovou výkonnost vývojářů. Dle SPACE frameworku není ani možné produktivitu vývojářů vysvětlovat a měřit pomocí jedné dimenze (metriky). \cite{space} Z tohoto důvodu bylo vybráno několik z dříve představených metrik z oblasti code review a úpravy zdrojového kódu, které lze pomocí GraphQL API získat jak z nástroje GitHub, tak z nástroje GitLab.
+S ohledem na různé druhy činností prováděných během vývoje softwaru si na rozdíl například od \cite{measuring-the-individual-performance-of-a-software-development-team} tato práce nedává za cíl vybrat nebo vytvořit metriku, která by se snažila pomocí jediného čísla popsat celkovou výkonnost vývojářů. Dle SPACE frameworku není ani možné produktivitu vývojářů vysvětlovat a měřit pomocí jedné dimenze (metriky). \cite{space} Z tohoto důvodu bylo vybráno několik z dříve představených metrik z oblasti code review a úpravy zdrojového kódu, které lze pomocí GraphQL API získat jak z nástroje GitHub, tak z nástroje GitLab.
 
-- LoC (dle typu souboru)
+U každého uživatele spojovaného se sledovaným projektem (repozitářem) budou evidovány následující metriky:
+
+\begin{enumerate}
+    \item \textbf{Počet vytvořených pull requestů}\\
+    Počet pull requestů, které daný uživatel vytvořil. Do počtu jsou zahrnuty jak uzavřené, tak mergnuté, ale i aktuálně stále otevřené pull requesty.
+    \item \textbf{Počet mergnutých pull requestů}\\
+    Počet pull requestů, které daný uživatel vytvořil a které byly zároveň mergnuty do cílové větve. Výrazně odlišný počet od počtu vytvořených pull requestů, může indikovat například špatnou kvalitu provedených změn (kvůli nimž byl pull request uzavřen) nebo problém s review procesem (pull requesty čekají na provedení code review nebo na zapracování požadovaných změn). Při interpretaci této metriky je třeba brát ohled na nastavené procesy ve vývojovém týmu.
+    \item \textbf{Velikost commitu a pull requestu}\\
+    Počet přidaných a odebraných řádků a počet změněných souborů v rámci commitu nebo pull requestu. Pull requesty s velkým množstvím změn nebo se změnami ve velkém počtu souborů mohou být obtížné na kontrolu, a proto by například přidání velké funkcionality mělo být rozděleno na dílčí úkoly, které budou zapracovány samostatně.
+    \item \textbf{Pečlivost code review}\\
+    Počet napsaných komentářů u pull requestu, kde je daný uživatel přiřazený jako reviewer. Malý počet komentářů může naznačovat menší důkladnost provedeného code review. Hodnotu této metriky je potřeba opět dávat do souvislostí s nastavenými pravidly pro code review proces. V některých vývojových týmech například reviewer kontroluje kód pouze na chyby, v jiných dává i tipy na optimalizace kódu nebo jeho jiné vylepšení.
+    \item \textbf{Počet komentářů od kolegů}\\
+    Počet napsaných komentářů u pull requestu, který uživatel vytvořil. Velký počet komentářů může indikovat, že kód obsahoval větší počet chyb nebo jiné nedostatky.
+    \item \textbf{Rychlost mergnutí pull requestu}\\
+    Čas od vytvoření pull requestu do doby jeho mergnutí. Pull requesty, které byly uzavřeny nebo které jsou otevřené, nejsou do této statistiky započítané.
+    \item \textbf{Rychlost zahájení review procesu}\\
+    Čas od vytvoření pull requestu do doby přidání prvního komentáře od reviewera nebo do doby schválení pull requestu reviewerem, pokud žádný komentář nepřidal. Otevřené a uzavřené pull requesty, u kterých nedošlo ani k jedné z výše uvedených akcí, nejsou do této statistiky započítané.
+\end{enumerate}
+
+Zvolené metriky pokrývají celkem tři dimenze definované SPACE frameworkem (výkon, aktivitu a komunikaci a spolupráci), což jak již bylo zmíněno v sekci \ref{section:space-framework} je dle jeho autorů dostatečný počet pro získání vypovídajících výsledků. Do statistik jsou zahrnuty pouze data od pull requestů, které byly založeny od začátku sledovaného období do doby poslední aktualizace dat.
