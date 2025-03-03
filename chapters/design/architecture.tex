@@ -1,1 +1,27 @@
 \section{Architektura}\label{section:architecture}
+Architekturu webových aplikací je možné navrhovat a popisovat v různém stupni detailu. V rámci této práce budou v následujících sekcích nejdříve popsány architektury z pohledu frontendu a následně se text bude věnovat backendovým architekturám.
+
+\subsection{Frontend}
+
+\subsubsection{Multi page aplikace}
+Multi page aplikace, které jsou někdy označovány také jako tradiční aplikace, jsou webové aplikace, u nichž se většina logiky nachází na straně serveru. Při procházení stránek této aplikace a případně dalších interakcích dochází většinou ke kompletnímu přenačtení celé stránky, kterou klientovi (webovému prohlížeči) server zasílá na základě jeho požadavku viz obrázek \ref{figure:SPA-vs-MPA}. Částečného přenačtení stránky lze docílit pomocí AJAX požadavků. \cite{mpa-spa-1, mpa-spa-2}
+
+Mezi hlavní výhody multi page aplikací se řadí jednodušší optimalizace pro vyhledávače a jednodušší implementace bezpečnostních mechanismů (autentizace a autorizace) oproti SPA. Mezi nevýhody bychom naopak mohli zařadit provázání frontendu s backendem nebo vyšší zátěž kladenou na webový server, neboť při každém požadavku jsou klientovi zasílány celé HTML stránky. \cite{mpa-spa-1, mpa-spa-2}
+
+\subsubsection{Single page aplikace}
+Single page aplikace (SPA) jsou webové aplikace, u kterých je většina UI logiky prováděna naopak na straně klienta. Kompletní HTML stránka je v případě SPA klientovi zaslána pouze při úvodním požadavku a následná komunikace se serverem probíhá pomocí AJAXu. Na základě této komunikace a dalších interakcí od uživatele je stránka dynamicky upravována pomocí JavaScriptu. \cite{mpa-spa-1, mpa-spa-2, mpa-spa-3}
+
+Mezi hlavní výhody SPA patří větší interaktivita, která spolu s menší odezvou tvoří příjemnější uživatelský zážitek. Další výhodou mohou být nižší přenosy dat oproti MPA, neboť klientovi jsou statická data zaslány pouze jednou. Mezi nevýhody bychom mohli zařadit nemožnost upravování aplikace za běhu, závislost na spouštění JavaScriptu u klienta\footnote{Některé JavaScriptové frameworky umožňují i server side rendering.} nebo komplikovanější optimalizaci pro vyhledávače\footnote{Optimalizace pro vyhledávače byla problematická hlavně v minulosti, v dnešní době už vykonávají JavaScript i crawleři, takže indexování SPA se každým dnem zlepšuje.}. \cite{mpa-spa-1, mpa-spa-2, mpa-spa-3}
+
+Popularitu SPA dokazuje i fakt, že spousta velkých společností tuto architekturu využívá při vývoji svých aplikací. Mezi takové aplikace například patří Facebook, Twitter nebo Gmail. \cite{mpa-spa-1} Pro vývoj SPA jsou v dnešní době nejčastěji využívány JavaScriptové frameworky React, Vue.js nebo Angular. \cite{state-of-js-2024}
+
+\begin{figure}[h]
+    \caption{Rozdíl v komunikaci mezi klientem a serverem u MPA a SPA}
+    \label{figure:SPA-vs-MPA}
+    \centering
+    \includegraphics[width=0.98\linewidth]{images/SPA-vs-MPA.pdf}
+\end{figure}
+
+\subsection{Backend}
+\subsubsection{Monolitická architektura}
+\subsubsection{Architektura mikroslužeb}
