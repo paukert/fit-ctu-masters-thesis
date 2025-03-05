@@ -25,3 +25,17 @@ Popularitu SPA dokazuje i fakt, že spousta velkých společností tuto architek
 \subsection{Backend}
 \subsubsection{Monolitická architektura}
 \subsubsection{Architektura mikroslužeb}
+
+\subsection{MVC architektura}
+Architektura model–view–controller odděluje datový model aplikace od řídící logiky a prezentační vrstvy s uživatelským rozhraním. Nejvíce se její použití rozšířilo u webových aplikací, poněvadž je součástí i mnoha webových frameworků. Na MVC architektuře jsou například založeny frameworky Laravel, Symfony, ASP.NET Core MVC framework a mnoho dalších. \cite{microsoft-mvc, it-network-mvc, symfony-laravel-comparison-1}
+
+MVC architektura se tedy skládá ze tří částí. Vrstva modelů definuje s jakými daty bude aplikace pracovat. Může také obsahovat validační pravidla pro tato data, případně i další funkce, které se váží k danému modelu. Při využití objektově relačního mapování kopírují modely z velké části strukturu tabulek v databázi. Jeden model typicky představuje konkrétní tabulku a jeho atributy představují sloupce dané tabulky. Druhou vrstvu tvoří views, jež se starají o zobrazení dat uživateli. V případě webových aplikací bývá součástí view vrstvy šablona obsahující značkovací jazyk HTML, do které jsou následně vkládána data z modelů. Poslední částí jsou controllery, jež se starají o načítání dat z modelů a jejich aktualizaci v závislosti na vstupu od uživatele. Propojují všechny ostatní vrstvy do funkčního celku. \cite{microsoft-mvc, it-network-mvc}
+
+\begin{figure}[h]
+    \caption{Životní cyklus požadavku při využití MVC architektury}
+    \label{figure:mvc}
+    \centering
+    \includegraphics[width=0.98\textwidth]{images/MVC.pdf}
+\end{figure}
+
+Obrázek \ref{figure:mvc} zobrazuje typický životní cyklus požadavku při využití MVC architektury. Můžeme si například představit situaci, kdy si administrátor chce zobrazit uživatele registrované v aplikaci. Požadavek od administrátora nejdříve zachytí část systému nazývaná jako router, která na základě URL adresy rozpozná, jakému controlleru požadavek předat. Daný controller si následně od konkrétního modelu vyžádá uložená data o registrovaných uživatelích. Poté, co je od něj získá, předá tato data view vrstvě, která je vloží do definované šablony. Sestavená stránka je nakonec zaslána zpět administrátorovi.
