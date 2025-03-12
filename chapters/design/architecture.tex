@@ -1,17 +1,18 @@
 \section{Architektura}\label{section:architecture}
-Architekturu webových aplikací je možné navrhovat a popisovat v různém stupni detailu. V rámci této práce budou v následujících sekcích nejdříve popsány architektury z pohledu frontendu a následně se text bude věnovat backendovým architekturám.
+Architekturu webových aplikací je možné navrhovat a popisovat v různém stupni detailu. V rámci této práce budou v následujících sekcích nejdříve popsány architektury z pohledu frontendu a následně se text bude věnovat backendovým architekturám. Ačkoliv budou architektury z pohledu frontendu a backendu popsány odděleně, tak spolu často souvisí nebo na sobě závisí.
 
 \subsection{Frontend}
+Z pohledu frontendu můžeme aplikace rozdělit na single page aplikace (SPA) a multi page aplikace (MPA), které jsou někdy označovány také jako tradiční aplikace. Odlišnosti mezi těmito přístupy budou detailněji popsány dále, avšak jedním z hlavních rozdílů je způsob, jakým tyto aplikace komunikují se serverem viz obrázek \ref{figure:SPA-vs-MPA}. Jak bude vidět dále, tak oba přístupy mají své výhody a nevýhody a při výběru je třeba hlavně zvážit jak má být aplikace interaktivní a s jakými daty bude pracovat.
 
 \subsubsection{Multi page aplikace}
-Multi page aplikace, které jsou někdy označovány také jako tradiční aplikace, jsou webové aplikace, u nichž se většina logiky nachází na straně serveru. Při procházení stránek této aplikace a případně dalších interakcích dochází většinou ke kompletnímu přenačtení celé stránky, kterou klientovi (webovému prohlížeči) server zasílá na základě jeho požadavku viz obrázek \ref{figure:SPA-vs-MPA}. Částečného přenačtení stránky lze docílit pomocí AJAX požadavků. \cite{mpa-spa-1, mpa-spa-2}
+Multi page aplikace jsou webové aplikace, u nichž se většina logiky nachází na straně serveru. Při procházení stránek této aplikace a případně dalších interakcích dochází většinou ke kompletnímu přenačtení celé stránky, kterou klientovi (webovému prohlížeči) server zasílá na základě jeho požadavku. Částečného přenačtení stránky lze docílit pomocí AJAX požadavků. \cite{mpa-spa-1, mpa-spa-2}
 
 Mezi hlavní výhody multi page aplikací se řadí jednodušší optimalizace pro vyhledávače a jednodušší implementace bezpečnostních mechanismů (autentizace a autorizace) oproti SPA. Mezi nevýhody bychom naopak mohli zařadit provázání frontendu s backendem nebo vyšší zátěž kladenou na webový server, neboť při každém požadavku jsou klientovi zasílány celé HTML stránky. \cite{mpa-spa-1, mpa-spa-2}
 
 \subsubsection{Single page aplikace}
-Single page aplikace (SPA) jsou webové aplikace, u kterých je většina UI logiky prováděna naopak na straně klienta. Kompletní HTML stránka je v případě SPA klientovi zaslána pouze při úvodním požadavku a následná komunikace se serverem probíhá pomocí AJAXu. Na základě této komunikace a dalších interakcí od uživatele je stránka dynamicky upravována pomocí JavaScriptu. \cite{mpa-spa-1, mpa-spa-2, mpa-spa-3}
+Single page aplikace jsou webové aplikace, u kterých je většina UI logiky prováděna naopak na straně klienta. Kompletní HTML stránka je v případě SPA klientovi zaslána pouze při úvodním požadavku a následná komunikace se serverem probíhá pomocí AJAXu. Na základě této komunikace a dalších interakcí od uživatele je stránka dynamicky upravována pomocí JavaScriptu. \cite{mpa-spa-1, mpa-spa-2, mpa-spa-3}
 
-Mezi hlavní výhody SPA patří větší interaktivita, která spolu s menší odezvou tvoří příjemnější uživatelský zážitek. Další výhodou mohou být nižší přenosy dat oproti MPA, neboť klientovi jsou statická data zaslány pouze jednou. Mezi nevýhody bychom mohli zařadit nemožnost upravování aplikace za běhu, závislost na spouštění JavaScriptu u klienta\footnote{Některé JavaScriptové frameworky umožňují i server side rendering.} nebo komplikovanější optimalizaci pro vyhledávače\footnote{Optimalizace pro vyhledávače byla problematická hlavně v minulosti, v dnešní době už vykonávají JavaScript i crawleři, takže indexování SPA se každým dnem zlepšuje.}. \cite{mpa-spa-1, mpa-spa-2, mpa-spa-3}
+Mezi hlavní výhody SPA patří větší interaktivita, která spolu s menší odezvou tvoří příjemnější uživatelský zážitek. Další výhodou mohou být nižší přenosy dat oproti MPA, neboť klientovi jsou statická data zaslána pouze jednou. Mezi nevýhody bychom mohli zařadit nemožnost upravování aplikace za běhu, závislost na spouštění JavaScriptu u klienta\footnote{Některé JavaScriptové frameworky umožňují i server side rendering.} nebo komplikovanější optimalizaci pro vyhledávače\footnote{Optimalizace pro vyhledávače byla problematická hlavně v minulosti, v dnešní době už vykonávají JavaScript i crawleři, takže indexování SPA se s postupem času zlepšuje.}. \cite{mpa-spa-1, mpa-spa-2, mpa-spa-3}
 
 Popularitu SPA dokazuje i fakt, že spousta velkých společností tuto architekturu využívá při vývoji svých aplikací. Mezi takové aplikace například patří Facebook, Twitter nebo Gmail. \cite{mpa-spa-1} Pro vývoj SPA jsou v dnešní době nejčastěji využívány JavaScriptové frameworky React, Vue.js nebo Angular. \cite{state-of-js-2024}
 
@@ -23,11 +24,38 @@ Popularitu SPA dokazuje i fakt, že spousta velkých společností tuto architek
 \end{figure}
 
 \subsection{Backend}
-\subsubsection{Monolitická architektura}
-\subsubsection{Architektura mikroslužeb}
+\subsubsection[Monolitická architektura]{Monolitická architektura \cite{monoliths-vs-microservices-1, monoliths-vs-microservices-2}}
+Monolitická architektura je tradiční softwarový přístup, při kterém je celý systém vyvíjen jako jeden celek, jenž bývá označován jako monolit. Všechny součásti takového systému jsou integrovány do jednoho celku, který obsahuje funkcionality týkající se různých oblastí. Mezi charakteristické znaky monolitické architektury patří:
+
+\begin{itemize}[topsep=0pt, itemsep=2pt]
+    \item jedna code base, která obsahuje všechny funcionality systému;
+    \item rychlejší počáteční vývoj;
+    \item nasazování aplikace jako jednoho funkčního celku (tj. i kvůli jedné malé změně musí být přenasazena celá aplikace);
+    \item vertikální škálování aplikace jako celku (zvýšením hardwarových prostředků serveru, kde aplikace běží);
+    \item složitější údržba a přidávání nových funkcionalit u větších aplikací;
+    \item jednoduché debugování a nasazování.
+\end{itemize}
+\vspace{5pt}
+
+Monolitická architektura je s ohledem na její vlastnosti nejčastěji využívána u menších projektů, u nichž se nepředpokládá větší rozšiřování. Dále může být vhodná pro prototypy aplikací díky rychlému počátečnímu vývoji. U větších projektů je avšak v dlouhodobém měřítku potřeba počítat s náročnější údržbou, neboť i jedna malá změna může mít dopad na celý systém.
+
+\subsubsection[Architektura mikroslužeb]{Architektura mikroslužeb \cite{monoliths-vs-microservices-1, monoliths-vs-microservices-2}}
+Architektura mikroslužeb je moderní softwarový přístup, při kterém je systém vyvíjen jako soubor menších nezávislých komponent, jež zajišťují jednu konkrétní funkcionalitu nebo skupinu souvisejících funcionalit. Jednotlivé komponenty, které bývají označovány jako mikroslužby, následně spolu komunikují pomocí definovaného API. Mezi charakteristické rysy architektury mikroslužeb se řadí:
+
+\begin{itemize}[topsep=0pt, itemsep=2pt]
+    \item oddělené code base pro jednotlivé komponenty;
+    \item možnost vytváření komponent s využitím různých technologií;
+    \item nezávislý vývoj a nasazování jednotlivých mikroslužeb;
+    \item horizontální škálování individuálních komponent;
+    \item potřeba robustnější infrastruktury pro správu, monitoring a nasazování mikroslužeb;
+    \item složitější debugování.
+\end{itemize}
+\vspace{5pt}
+
+Architektura mikroslužeb je nejčastěji využívána u velkých projektů, které vyžadují vysokou flexibilitu, spolehlivost a jednoduchou škálovatelnost. Jelikož jsou jednotlivé mikroslužby na sobě nezávislé a každá z nich se stará o jednu konkétní fukcionalitu, tak je jednodušší provádět inovace a je možné rychleji zapracovávat uživatelské požadavky a opravovat nalezené chyby. 
 
 \subsection{MVC architektura}
-Architektura model–view–controller odděluje datový model aplikace od řídící logiky a prezentační vrstvy s uživatelským rozhraním. Nejvíce se její použití rozšířilo u webových aplikací, poněvadž je součástí i mnoha webových frameworků. Na MVC architektuře jsou například založeny frameworky Laravel, Symfony, ASP.NET Core MVC framework a mnoho dalších. \cite{microsoft-mvc, it-network-mvc, symfony-laravel-comparison-1}
+Architektura model–view–controller odděluje datový model aplikace od řídící logiky a prezentační vrstvy s uživatelským rozhraním. Nejvíce se její použití rozšířilo u webových aplikací, poněvadž je součástí mnoha webových frameworků. Na MVC architektuře jsou například založeny frameworky Laravel, Symfony, ASP.NET Core MVC framework a mnoho dalších. \cite{microsoft-mvc, it-network-mvc, symfony-laravel-comparison-1}
 
 MVC architektura se tedy skládá ze tří částí. Vrstva modelů definuje s jakými daty bude aplikace pracovat. Může také obsahovat validační pravidla pro tato data, případně i další funkce, které se váží k danému modelu. Při využití objektově relačního mapování kopírují modely z velké části strukturu tabulek v databázi. Jeden model typicky představuje konkrétní tabulku a jeho atributy představují sloupce dané tabulky. Druhou vrstvu tvoří views, jež se starají o zobrazení dat uživateli. V případě webových aplikací bývá součástí view vrstvy šablona obsahující značkovací jazyk HTML, do které jsou následně vkládána data z modelů. Poslední částí jsou controllery, jež se starají o načítání dat z modelů a jejich aktualizaci v závislosti na vstupu od uživatele. Propojují všechny ostatní vrstvy do funkčního celku. \cite{microsoft-mvc, it-network-mvc}
 
