@@ -2,7 +2,7 @@
 Architekturu webových aplikací je možné navrhovat a popisovat v různém stupni detailu. V rámci této práce budou v následujících sekcích nejdříve popsány architektury z pohledu frontendu a následně se text bude věnovat backendovým architekturám. Ačkoliv budou architektury z pohledu frontendu a backendu popsány odděleně, tak spolu často souvisí nebo na sobě závisí.
 
 \subsection{Frontend}
-Z pohledu frontendu můžeme aplikace rozdělit na single page aplikace (SPA) a multi page aplikace (MPA), které jsou někdy označovány také jako tradiční aplikace. Odlišnosti mezi těmito přístupy budou detailněji popsány dále, avšak jedním z hlavních rozdílů je způsob, jakým tyto aplikace komunikují se serverem viz obrázek \ref{figure:SPA-vs-MPA}. Jak bude vidět dále, tak oba přístupy mají své výhody a nevýhody a při výběru je třeba hlavně zvážit jak má být aplikace interaktivní a s jakými daty bude pracovat.
+Z pohledu frontendu můžeme aplikace rozdělit na single page aplikace (SPA) a multi page aplikace (MPA), které jsou někdy označovány také jako tradiční aplikace. Odlišnosti mezi těmito přístupy budou detailněji popsány dále, avšak jedním z hlavních rozdílů je způsob, jakým tyto aplikace komunikují se serverem viz obrázek \ref{figure:SPA-vs-MPA}. Jak bude vidět dále, tak oba přístupy mají své výhody a nevýhody a při výběru je třeba například zvážit, jak má být aplikace interaktivní a s jakými daty bude pracovat.
 
 \subsubsection{Multi page aplikace}
 Multi page aplikace jsou webové aplikace, u nichž se většina logiky nachází na straně serveru. Při procházení stránek této aplikace a případně dalších interakcích dochází většinou ke kompletnímu přenačtení celé stránky, kterou klientovi (webovému prohlížeči) server zasílá na základě jeho požadavku. Částečného přenačtení stránky lze docílit pomocí AJAX požadavků. \cite{mpa-spa-1, mpa-spa-2}
@@ -24,7 +24,7 @@ Popularitu SPA dokazuje i fakt, že spousta velkých společností tuto architek
 \end{figure}
 
 \subsection{Backend}
-Jedním ze způsobů dělení aplikací z pohledu backendu je rozdělení na aplikace využívající monolitickou architekturu a aplikace využívající architekturu mikroslužeb. Ačkoliv je architektura mikroslužeb modernějším přístupem než monolitická architektura, tak i zde platí, že obě architektury mají své využití. Zatímco monolitická architektura bude většinou naprosto dostatečná pro malé aplikace, které obsahují pouze pár funkcionalit, tak přednosti architektury mikroslužeb se projeví převážně až u větších komplexnějších systémů.
+Jedním ze způsobů dělení aplikací z pohledu backendu je rozdělení na aplikace využívající monolitickou architekturu a aplikace využívající architekturu mikroslužeb. Ačkoliv je architektura mikroslužeb modernějším přístupem než monolitická architektura, tak i zde platí, že obě architektury mají stále své využití. Zatímco monolitická architektura bude většinou naprosto dostatečná pro malé aplikace, které obsahují pouze pár funkcionalit, tak přednosti architektury mikroslužeb se projeví převážně až u větších komplexnějších systémů.
 
 \subsubsection[Monolitická architektura]{Monolitická architektura \cite{monoliths-vs-microservices-1, monoliths-vs-microservices-2}}
 Monolitická architektura je tradiční softwarový přístup, při kterém je celý systém vyvíjen jako jeden celek, jenž bývá označován jako monolit. Všechny součásti takového systému jsou integrovány do jednoho celku, který obsahuje funkcionality týkající se různých oblastí. Mezi charakteristické znaky monolitické architektury patří:
