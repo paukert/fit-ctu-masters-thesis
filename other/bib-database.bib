@@ -1,8 +1,9 @@
 @book{pro-git,
-  title={Pro git},
-  author={Chacon, Scott and Straub, Ben},
+  title={Pro Git},
+  author={Chacon, S. and Straub, B.},
+  isbn={9781484200766},
   year={2014},
-  publisher={Springer Nature}
+  publisher={Apress}
 }
 
 @INPROCEEDINGS{code-review,
@@ -139,13 +140,16 @@
   url = {https://ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm}
 }
 
-@MISC{REST-HTTP,
-  title={REST-Based API explained},
-  url={https://medium.com/@dmosyan/rest-based-api-explained-8940af50f545},
-  urldate = {2025-01-25},
-  howpublished = {online},
-  author={David Mosyan},
-  year={2023}
+@ARTICLE{REST-HTTP,
+  author={Neumann, Andy and Laranjeiro, Nuno and Bernardino, Jorge},
+  journal={IEEE Transactions on Services Computing}, 
+  title={An Analysis of Public REST Web Service APIs}, 
+  year={2021},
+  volume={14},
+  number={4},
+  pages={957-970},
+  keywords={Best practices;Documentation;Standards;Simple object access protocol;XML;Analytical models;REST;RESTful;web services;API;HTTP;web;web services analysis},
+  doi={10.1109/TSC.2018.2847344}
 }
 
 @MISC{GraphQL,
@@ -590,22 +594,14 @@
   publisher={IT Revolution Press}
 }
 
-@MISC{mpa-spa-1,
-  title={Single Page Application (SPA) vs Multi Page Application (MPA): Which Is The Best?},
-  url={https://cleancommit.io/blog/spa-vs-mpa-which-is-the-king/},
-  urldate = {2025-03-02},
-  howpublished = {online},
-  author={Tim Davidson},
-  year={2023}
-}
-
-@MISC{mpa-spa-2,
-  title={Single Page Applications vs Multiple Page Applications — Do You Really Need an SPA?},
-  url={https://medium.com/@goldybenedict/single-page-applications-vs-multiple-page-applications-do-you-really-need-an-spa-cf60825232a3},
-  urldate = {2025-03-02},
-  howpublished = {online},
-  author={Goldy Benedict Macquin},
-  year={2018}
+@BOOK{spa-security,
+  title={Web Application Security},
+  author={Hoffman, Andrew},
+  publisher={O'Reilly Media},
+  month={1},
+  year={2024},
+  address={Sebastopol, CA},
+  isbn={9781098143930}
 }
 
 @MISC{mpa-spa-3,
@@ -618,22 +614,51 @@
   year={2023}
 }
 
-@MISC{monoliths-vs-microservices-1,
-  title={Microservices vs. monolithic architecture},
-  url={https://www.atlassian.com/microservices/microservices-architecture/microservices-vs-monolith},
-  urldate = {2025-03-11},
-  howpublished = {online},
-  author={Chandler Harris},
-  year={2025}
+@book{mpa-spa-4,
+  author = {Scott, Emmit},
+  title = {SPA Design and Architecture: Understanding Single Page Web Applications},
+  year = {2015},
+  isbn = {1617292435},
+  publisher = {Manning Publications Co.},
+  address = {USA},
+  edition = {1st},
+  abstract = {Single page web applications (SPAs) are the next step in the development of web-based software, delivering the sleekness and fluidity of a native desktop application in a browser. SPA development requires knowledge of new development concepts and the mastery of new technologies that support these more complex applications. Fortunately, learning how to build SPAs doesn't have to be an overwhelming experience! SPA Design and Architecture: Understanding Single Page Web Applications helps developers take the leap from traditional web applications to SPAs. It starts with an introduction to the SPA model and builds on the standard approach of creating linked pages. Then it provides a gentle introduction to modular JavaScript programming, including AMD and module loaders. Readers are guided through the various facets of SPA architecture, including an overview of MV* frameworks, unit testing, routing, layout management, data access, pub/sub, performance, and security. Examples are easy-to-follow and can be applied to the library or framework of the reader's choice. Purchase of the print book includes a free eBook in PDF, Kindle, and ePub formats from Manning Publications.}
 }
 
-@MISC{monoliths-vs-microservices-2,
-  title={What’s the Difference Between Monolithic and Microservices Architecture?},
-  url={https://aws.amazon.com/compare/the-difference-between-monolithic-and-microservices-architecture/},
-  urldate = {2025-03-11},
-  howpublished = {online},
-  author={{Amazon Web Services, Inc.}},
-  year={2025}
+@ARTICLE{mpa-spa-5,
+  author={Kowalczyk, Karolina and Szandala, Tomasz},
+  journal={IEEE Access}, 
+  title={Enhancing SEO in Single-Page Web Applications in Contrast With Multi-Page Applications}, 
+  year={2024},
+  volume={12},
+  number={},
+  pages={11597-11614},
+  keywords={Search engines;Optimization;Internet;Servers;Web pages;Rendering (computer graphics);Codes;Java;Web search;JavaScript;search engines;single-page applications;web search},
+  doi={10.1109/ACCESS.2024.3355740}
+}
+
+@INPROCEEDINGS{monoliths-vs-microservices-1,
+  author={De Lauretis, Lorenzo},
+  booktitle={2019 IEEE International Symposium on Software Reliability Engineering Workshops (ISSREW)}, 
+  title={From Monolithic Architecture to Microservices Architecture}, 
+  year={2019},
+  volume={},
+  number={},
+  pages={93-96},
+  keywords={Pediatrics;Scalability;Conferences;Microservice architectures;Computer architecture;Companies;Software;Software reliability;MA to MSA migration;Monolith architecture;Microservices architecture;monolith to microservices},
+  doi={10.1109/ISSREW.2019.00050}
+}
+
+@ARTICLE{monoliths-vs-microservices-2,
+  author={Blinowski, Grzegorz and Ojdowska, Anna and Przybyłek, Adam},
+  journal={IEEE Access}, 
+  title={Monolithic vs. Microservice Architecture: A Performance and Scalability Evaluation}, 
+  year={2022},
+  volume={10},
+  number={},
+  pages={20357-20374},
+  keywords={Microservice architectures;Computer architecture;Scalability;Business;Companies;Java;Complexity theory;Software architecture;microservices;monolith;software measurement;benchmarking;performance;scalability;cloud computing;Azure},
+  doi={10.1109/ACCESS.2022.3152803}
 }
 
 @MISC{microsoft-mvc,
@@ -645,13 +670,16 @@
   year = {2024}
 }
 
-@MISC{it-network-mvc,
-  title = {MVC architektura},
-  url = {https://www.itnetwork.cz/navrh/mvc-architektura-navrhovy-vzor},
-  urldate = {2025-03-04},
-  howpublished = {online},
-  author = {David Hartinger},
-  year = {2020}
+@INPROCEEDINGS{mvc,
+  author={Jailia, Manisha and Kumar, Ashok and Agarwal, Manisha and Sinha, Isha},
+  booktitle={2016 International Conference on ICT in Business Industry \& Government (ICTBIG)}, 
+  title={Behavior of MVC (Model View Controller) based Web Application developed in PHP and .NET framework}, 
+  year={2016},
+  volume={},
+  number={},
+  pages={1-5},
+  keywords={Software;Switches;Computer architecture;Model;View;Controller;PHP;.NET;MVC;Architecture},
+  doi={10.1109/ICTBIG.2016.7892651}
 }
 
 @MISC{Highcharts,
@@ -709,22 +737,15 @@
   howpublished = {online}
 }
 
-@MISC{symfony-laravel-comparison-1,
-  author = {Vivek Chavda},
-  title = {Laravel vs Symfony: Their Important Features, Similarities, and Differences},
-  url = {https://radixweb.com/blog/laravel-vs-symfony},
-  urldate = {2025-02-22},
-  year = {2024},
-  howpublished = {online}
-}
-
-@MISC{symfony-laravel-comparison-2,
-  author = {Sarim Javaid},
-  title = {Laravel vs Symfony: The Better Framework for Your Startup?},
-  url = {https://www.cloudways.com/blog/laravel-vs-symfony/},
-  urldate = {2025-02-22},
-  year = {2023},
-  howpublished = {online}
+@article{symfony-laravel-comparison-1,
+  title={A comparative study of laravel and symfony PHP frameworks},
+  author={Laaziri, Majida and Benmoussa, Khaoula and Khoulji, Samira and Larbi, K Mohamed and El Yamami, Abir},
+  journal={International Journal of Electrical and Computer Engineering},
+  volume={9},
+  number={1},
+  pages={704--712},
+  year={2019},
+  publisher={IAES Institute of Advanced Engineering and Science}
 }
 
 @MISC{symfony-projects,
@@ -792,22 +813,16 @@
   howpublished = {online}
 }
 
-@MISC{js-frameworks-comparison-1,
-  author = {Fernando Doglio},
-  title = {Top 7 Frontend Frameworks to Use in 2025: Pro Advice},
-  url = {https://roadmap.sh/frontend/frameworks},
-  urldate = {2025-03-01},
-  year = {2024},
-  howpublished = {online}
-}
-
-@MISC{js-frameworks-comparison-2,
-  author = {Jeel Patel},
-  title = {List of 10 Best Front end Frameworks to Use For Web Development},
-  url = {https://www.monocubed.com/blog/best-front-end-frameworks/},
-  urldate = {2025-03-01},
-  year = {2024},
-  howpublished = {online}
+@INPROCEEDINGS{js-frameworks-comparison-1,
+  author={Kaur, Gursheen and Tiwari, Raj Gaurang},
+  booktitle={2023 4th International Conference on Electronics and Sustainable Communication Systems (ICESC)}, 
+  title={Comparison and Analysis of Popular Frontend Frameworks and Libraries: An Evaluation of Parameters for Frontend Web Development}, 
+  year={2023},
+  volume={},
+  number={},
+  pages={1067-1073},
+  keywords={Knowledge engineering;Communication systems;Scalability;Ecosystems;Programming;Libraries;User experience;Frontend Web Development;Popular Frontend Frameworks and Libraries;Parameters;Evaluation;Comparison;Analysis},
+  doi={10.1109/ICESC57686.2023.10192987}
 }
 
 @MISC{inertia,
