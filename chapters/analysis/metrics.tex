@@ -1,7 +1,7 @@
-\section{Měření výkonnosti vývojářů}\label{section:metrics}
+\section{Měření výkonnosti vývojářů}
 Následující podkapitola je věnována popisu standardů, pomocí nichž je možné porovnávat úroveň aktivity a výkonnost vývojářů v různých oblastech vývoje softwaru. Následně budou popsána data, která lze získat ze systémů GitHub a GitLab a která představují klíčový zdroj informací o vývojářských činnostech. V závěrečné části budou přiblíženy metriky odvozené z těchto dat, jež lze využít pro sledování výkonnosti a produktivity vývojářů.
 
-\subsection{Standardy}
+\subsection{Standardy}\label{section:metrics-standards}
 V oblasti hodnocení výkonnosti vývojářů a vývojových týmů existuje řada přístupů, které se snaží formalizovat způsob měření produktivity, efektivity a spokojenosti vývojářů. Mezi zástupce těchto přístupů patří i SPACE framework a DORA metriky.
 
 \subsubsection{SPACE framework}\label{section:space-framework}
@@ -23,7 +23,7 @@ Obsah následující sekce o SPACE frameworku vychází ze článku \cite{space}
 
 Ačkoliv SPACE framework definuje celkem pět různých dimenzí, tak pro získání užitečných výstupů není potřeba sledovat metriky z každé z nich. Autoři SPACE frameworku dokonce varují před sledováním velkého počtu metrik se stanovenými cíly, neboť vysoký počet cílů může u vývojářů vzbuzovat pocit, že jich nemohou dosáhnout. Pro vypovídající výstupy, které mohou sloužit například jako podklady pro rozhodnutí o změnách ve vývojovém procesu, je doporučeno sledovat pár metrik minimálně ze tří různých dimenzí.
 
-\subsubsection{DORA metriky}\todo{Zapracovat připomínky}
+\subsubsection{DORA metriky}\label{section:dora}
 Tým DevOps Research and Assessment identifikoval čtyři klíčové metriky pro měření efektivity DevOps procesů u vývojových týmů \cite{DORA-metrics, DORA-metrics-framework}:
 
 \begin{enumerate}
@@ -37,7 +37,7 @@ Tým DevOps Research and Assessment identifikoval čtyři klíčové metriky pro
     Metrika doba obnovy služby je čas, který trvá obnovit produkční službu po chybě nebo neplánovaném výpadku.
 \end{enumerate}
 
-Ačkoliv jsou DORA metriky široce uznávány jako způsob pro měření efektivity DevOps procesů, tak s ohledem na cíle práce jsou zde uvedeny převážně pro kompletnost. Tyto metriky totiž spíše popisují vývojový tým jako celek a jejich využití pro zjištění výkonnosti jednotlivce by bylo problematické.
+Ačkoliv jsou DORA metriky široce uznávány jako způsob pro měření efektivity DevOps procesů, tak s ohledem na cíle práce jsou zde uvedeny převážně pro kompletnost. Hodnoty těchto metrik může ovlivňovat celá řada faktorů z různých fází vývojového procesu. I z tohoto důvodu DORA metriky bez dalšího kontextu spíše popisují vývojový tým jako celek.
 
 \subsection{Data ze systémů pro správu verzí softwaru}
 Standardy pro měření výkonnosti vývojářů, jako jsou SPACE framework nebo DORA metriky, definují rámce a principy hodnocení produktivity a efektivity vývojových týmů. Aby však bylo možné tyto standardy v praxi aplikovat, je nezbytné identifikovat vhodné zdroje dat, které umožňují výpočet a sledování zvolených metrik. Jedním z hlavních zdrojů takových dat jsou nástroje GitHub a GitLab. Tyto nástroje poskytují pomocí svých API rozsáhlé množství informací, které byly pro účely této práce kategorizovány do následujících celků \cite{GitHub-REST, GitHub-GraphQL, GitLab-REST, GitLab-GraphQL}:
