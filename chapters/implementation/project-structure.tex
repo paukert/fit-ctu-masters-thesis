@@ -1,0 +1,23 @@
+\section{Inicializace a stuktura projektu}
+Pro urychlení počáteční fáze vývoje a zajištění moderní architektury prezentační vrstvy byl využit Vue starter kit, který vytvořili samotní tvůrci Laravel frameworku. Toto řešení poskytuje základní kostru aplikace včetně autentizační logiky a propojení backendu s frontendovým frameworkem Vue.js. Vizuální stránka uživatelského rozhraní je zajišťována pomocí knihovny \mbox{shadcn-vue}, která nabízí sadu přizpůsobitelných komponent. Pro jednotný vizuální styl ovládacích prvků je dále využívána sada open source ikon Lucide.
+
+Projekt dodržuje konvence Laravel frameworku pro adresářovou strukturu, což zajišťuje přehlednost a snadnou udržitelnost kódu. Klíčové součásti implementace jsou znázorněny na následujícím schématu:
+
+\dirtree{%
+  .1 .
+  .1 app\DTcomment{jádro aplikace obsahující aplikační logiku}.
+    .2 Http .
+      .3 Controllers\DTcomment{kontrolery zpracovávající příchozí požadavky}.
+      .3 Middleware\DTcomment{middleware}.
+      .3 Requests\DTcomment{typy požadavků s validačními pravidly}.
+    .2 Models\DTcomment{definice modelů reprezentující datové entity}.
+    .2 Services.
+      .3 GitProviders\DTcomment{služby pro synchronizaci dat s VCS}.
+  .1 config\DTcomment{konfigurační soubory aplikace}.
+  .1 database\DTcomment{databázové migrace, seedery pro testovací data}.
+  .1 resources\DTcomment{zdrojové kódy prezentační vrstvy (CSS a JS)}.
+  .1 routes\DTcomment{směrovací pravidla}.
+  .1 .env\DTcomment{proměnné prostředí}.
+  .1 composer.json\DTcomment{soubor se seznamem PHP závislostí}.
+  .1 package.json\DTcomment{soubor se seznamem JavaScriptových závislostí}.
+}
