@@ -1,5 +1,21 @@
 \chapter{Testování}
+V této kapitole budou nejprve představeny nástroje, které byly využity při~vývoji aplikace a které připívají k větší kvalitě vytvářeného kódu. Dále bude přiblížen průběh uživatelského testování, jeho výsledky a zpětná vazba od~účastníků.
 
-\section{Automatické testy}
+\section{Automatické testy a kontroly}
+Všechny níže uvedené testy a kontroly jsou integrovány do CI/CD procesu. Spouští se automaticky před sloučením změn a při přidání commitu do hlavní vývojové větve. Díky tomu je minimalizováno riziko zanesení chyb do produkčního prostředí a je garantováno dodržování stanovených standardů.
+
+\subsection{Larastan}
+Pro kontrolu PHP kódu byl zvolen nástroj Larastan. Jedná se o rozšíření populárního statického analyzátoru PHPStan, které je optimalizováno pro framework Laravel. Larastan při procesu analýzy kódu spouští aplikační kontejner, což mu umožňuje kromě statické analýzy datových typů a logické struktury programu kontrolovat i datové typy, které jsou běžně zjistitelné až za běhu aplikace. I díky tomuto přístupu je zajištěna podpora pro mnoho dynamických vlastností frameworku Laravel, což výrazně přispívá k typové bezpečnosti a robustnosti aplikace. \cite{Larastan}
+
+\subsection{Laravel Pint}
+Konzistence formátování PHP kódu je zajišťována nástrojem Laravel Pint. Jde o nástroj postavený na základech PHP CS Fixer, který však nabízí zjednodušenou konfiguraci a sady předpřipravených pravidel odpovídajících standardům pro vývoj PHP aplikací. Pint byl v rámci projektu konfigurován tak, aby kontroloval a opravoval styl zápisu kódu dle standardu PSR-12. Zajištění jednotného stylu, zahrnujícího pravidla pro odsazování, závorkování či deklaraci typů, je klíčové pro čitelnost kódu a efektivní spolupráci v týmu. \cite{Pint}
+
+\subsection{ESLint, Prettier}
+V kontextu klientské části aplikace slouží pro statickou analýzu kódu nástroj ESLint. Jeho účelem je identifikace problematických míst v komponentách frameworku Vue.js a v kódu jazyka JavaScript, která by mohla vést k chybám za běhu aplikace nebo k nekonzistencím v logice komponent.
+
+Jako doplněk k nástroji ESLint je pro formátování zdrojového kódu frontendu využíván Prettier. Zatímco ESLint se zaměřuje na kvalitu a logickou správnost kódu, Prettier zajišťuje, aby všechny skripty a Vue.js komponenty měly jednotné formátování bez ohledu na to, kým byly napsány.
+
+\subsection{PHPUnit}
+Pro automatizované testování funkčnosti aplikace je využíván testovací framework PHPUnit. V současné fázi vývoje obsahuje projekt sadu základních testů, které byly součástí využitého Vue starter kitu. Tyto testy ověřují klíčové procesy, jako je registrace nového uživatele, změna přístupového hesla či~dostupnost hlavního dashboardu po úspěšném přihlášení.
 
 \section{Uživatelské testování}
