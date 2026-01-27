@@ -508,9 +508,9 @@
 \vskip 0.5cm
 
 {\noindent\color{heading}\bfseries Klíčová slova\hspace{1em}}{\thectufitklicovaslova}}\fi
+\end{abstractpage}
 
-\vskip 1cm
-
+\begin{abstractpage}
 \if\@ctufitlang E{%
 \begin{abstrakt}%
 \thectufitabstrakt
