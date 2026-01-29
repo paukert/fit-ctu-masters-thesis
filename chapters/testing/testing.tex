@@ -16,6 +16,79 @@ V kontextu klientské části aplikace slouží pro statickou analýzu kódu ná
 Jako doplněk k nástroji ESLint je pro formátování zdrojového kódu frontendu využíván Prettier. Zatímco ESLint se zaměřuje na kvalitu a logickou správnost kódu, Prettier zajišťuje, aby všechny skripty a Vue.js komponenty měly jednotné formátování bez ohledu na to, kým byly napsány.
 
 \subsection{PHPUnit}
-Pro automatizované testování funkčnosti aplikace je využíván testovací framework PHPUnit. V současné fázi vývoje obsahuje projekt sadu základních testů, které byly součástí využitého Vue starter kitu. Tyto testy ověřují klíčové procesy, jako je registrace nového uživatele, změna přístupového hesla či~dostupnost hlavního dashboardu po úspěšném přihlášení.
+Pro automatizované testování funkčnosti aplikace je využíván testovací framework PHPUnit. V současné fázi vývoje obsahuje projekt sadu základních testů, které byly součástí využitého Vue starter kitu. Tyto testy ověřují klíčové procesy, jako je registrace nového uživatele, změna přístupového hesla či~dostupnost hlavního dashboardu po úspěšném přihlášení. V budoucnu by však bylo vhodné tyto testy rozšířit na další funkcionality systému jako je například synchronizace dat se systémy pro správu verzí a ověření správnosti zobrazovaných metrik na dashboardu.
 
 \section{Uživatelské testování}
+V této sekci bude popsán proces a výsledky uživatelského testování vytvořené aplikace. Hlavním cílem této fáze bylo ověřit, zda je navržené uživatelské rozhraní dostatečně intuitivní pro koncové uživatele, a identifikovat potenciální nedostatky, které by mohly negativně ovlivnit uživatelskou přívětivost. Na základě získaných poznatků byly následně navrženy úpravy systému.
+
+Před zahájením samotného testování byli účastníci seznámeni se skutečností, že předmětem hodnocení je samotný systém, nikoliv jejich individuální schopnosti či dovednosti. Testování ze zúčastnili celkem 4 uživatelé a bylo realizováno prezenční formou. To umožnilo sledovat bezprostřední reakce uživatelů a prováděné akce při plnění úkolů.
+
+\subsection{Průběh testování}
+Samotný proces testování byl rozdělen do několika fází:
+
+\begin{enumerate}
+    \item \textbf{Seznámení se systémem:} Každému účastníkovi byla nejprve představena podstata aplikace a její hlavní účel.
+    \item \textbf{Průchod testovacími scénáři:} Uživatelům byly předány připravené scénáře obsahující sadu konkrétních úkolů, které měli v systému samostatně vykonat.
+    \item \textbf{Závěrečný rozhovor:} Po dokončení všech úkolů byl s každým uživatelem veden strukturovaný rozhovor. Během této diskuse byly shromážděny subjektivní poznatky a náměty na funkční či vizuální vylepšení.
+\end{enumerate}
+
+\subsection{Testovací scénáře}
+
+\subsubsection{Registrace do systému}
+\begin{description}
+    \item[\textcolor{black}{Modelová situace}] \hfill \\
+        Dozvěděli jste se o nástroji, který umí porovnávat aktivitu vývojářů. Jste zvědaví, jak si stojíte oproti svým kolegům.
+    \item[\textcolor{black}{Úkol}] \hfill
+        \vspace{-2mm}
+        \begin{enumerate}
+            \item Zaregistrujte se do aplikace pod jménem Tomáš Novák, s e-mailem \mbox{tnovak@gmail.com} a libovolným heslem.
+        \end{enumerate}
+\end{description}
+
+\subsubsection{Změna nastavení}
+\begin{description}
+    \item[\textcolor{black}{Modelová situace}] \hfill \\
+        Při registraci jste omylem udělal ve své e-mailové adrese překlep a chtěl byste to napravit. Zároveň byste si chtěl změnit barevné schéma aplikace.
+    \item[\textcolor{black}{Úkoly}] \hfill
+        \vspace{-2mm}
+        \begin{enumerate}
+            \item Upravte svou e-mailovou adresu na t.novak@gmail.com
+            \item Změňte vzhled aplikace na jiné barevné schéma.
+        \end{enumerate}
+\end{description}
+
+\subsubsection{Zobrazení metrik}
+\begin{description}
+    \item[\textcolor{black}{Modelová situace}] \hfill \\
+        Jste vedoucí vývojového týmu a chcete si zobrazit informace o aktivitách svého kolegy.
+    \item[\textcolor{black}{Úkol}] \hfill
+        \vspace{-2mm}
+        \begin{enumerate}
+            \item Zobrazte si metriky uživatele Lukáš Paukert od 20. ledna do 29. ledna.
+        \end{enumerate}
+\end{description}
+
+\subsubsection{Správa sledovaných repozitářů}
+\begin{description}
+    \item[\textcolor{black}{Modelová situace}] \hfill \\
+        Jste vedoucí vývojového týmu a chcete upravit seznam repozitářů, u kterých dochází ke sběru dat.
+    \item[\textcolor{black}{Úkoly}] \hfill
+        \vspace{-2mm}
+        \begin{enumerate}
+            \item Začněte od dnešního dne evidovat aktivity z repozitáře laravel/laravel z veřejné instance GitHub. Repozitář by se měl v systému zobrazovat pod jménem Laravel a data by měla být synchronizována každých 6~hodin.
+            \item Odeberte repozitář Yii2 ze sledovaných projektů (včetně všech jeho dat).
+        \end{enumerate}
+\end{description}
+
+\subsubsection{Přiřazení účtu ze systému pro správu verzí}
+\begin{description}
+    \item[\textcolor{black}{Modelová situace}] \hfill \\
+        Jste vedoucí vývojového týmu a chcete novému uživateli přiřadit účet z verzovacího systému.
+    \item[\textcolor{black}{Úkol}] \hfill
+        \vspace{-2mm}
+        \begin{enumerate}
+            \item Přiřaďte uživateli Lukáš Paukert účet se jménem lukas.paukert z verzovacího systému GitLab provozovaným firmou DAMI.
+        \end{enumerate}
+\end{description}
+
+\subsection{Průběh a vyhodnocení}
