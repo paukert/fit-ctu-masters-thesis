@@ -550,6 +550,7 @@
  			\usemintedstyle{bw}%
 		\fi
 		\setminted{bgcolor=backgroundgray, bgcolorpadding=0.5em, listparameters=\setlength{\topsep}{0.3em}}%
+		\setminted{fontsize=\small}%
 		\setmintedinline{bgcolor={}}
 	}{}%
 }
