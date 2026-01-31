@@ -1,0 +1,51 @@
+\subsection{Grafy}
+Pro vizualizaci aktivit vývojářů byla zvolena knihovna Highcharts, jež byla do prostředí frameworku Vue.js integrována prostřednictvím rozšiřujícího modulu \mintinline{text}|highcharts-vue|. V rámci implementace byly vytvořeny dvě specializované komponenty: \mintinline{text}|LineChart| a \mintinline{text}|PolarChart|. Tyto komponenty zajišťují zapouzdření logiky vykreslování a oddělují prezentační vrstvu od datové.
+
+Vzhled a chování jednotlivých grafů je definováno prostřednictvím konfiguračních objektů. Samotná data jsou komponentám předávána dynamicky z příslušného controlleru. Pro zajištění konzistence zobrazení a minimalizaci duplicity kódu dochází uvnitř komponent ke sloučení těchto vstupních dat s výchozím nastavením. Ukázka implementace komponenty pro liniový graf, demonstrující dynamické skládání konfiguračního objektu, je uvedena na výpisu kódu \ref{listing:highcharts-example}.
+
+Dalším z důležitých aspektů implementace byla podpora světlého a tmavého režimu, která je realizována pomocí modulu \mintinline{text}|highcharts/themes/adaptive|. Tento modul zajišťuje automatické přizpůsobení barevného schématu grafů aktuálnímu nastavení aplikace. Detekce preferovaného režimu probíhá na základě systémové preference (pomocí CSS pravidla \mintinline{text}|prefers-color-scheme|), případně dle CSS třídy, která je dynamicky přidávána na HTML element \mintinline{text}|<body>| na~základě uživatelského nastavení.
+
+\begin{listing}[h!]
+    \caption{Vue.js komponenta s konfigurací grafu}\label{listing:highcharts-example}
+    \begin{minted}{vue}
+<script setup lang="ts">
+import { merge } from 'lodash';
+import { computed } from 'vue';
+
+const props = defineProps<{
+    options: object;
+}>();
+
+const baseOptions = {
+    chart: { height: 250 },
+    legend: {
+        align: 'right',
+        verticalAlign: 'top',
+    },
+    // ...
+    title: { text: null },
+    xAxis: {
+        dateTimeLabelFormats: {
+            day: '%d. %m.',
+            week: '%d. %m.',
+        },
+        lineColor: '#CCD6EB',
+        tickColor: '#CCD6EB',
+        type: 'datetime',
+    },
+    yAxis: {
+        minTickInterval: 1,
+        title: { enabled: false },
+    },
+};
+
+const finalOptions = computed(() => {
+    return merge({}, baseOptions, props.options);
+});
+</script>
+
+<template>
+    <highcharts :options="finalOptions"></highcharts>
+</template>
+    \end{minted}
+\end{listing}
