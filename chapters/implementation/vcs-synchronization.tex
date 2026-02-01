@@ -1,0 +1,37 @@
+\section{Synchronizace dat s VCS}
+Tato podkapitola je věnována implementaci mechanismu synchronizace dat se systémy pro správu verzí softwaru. Tento modul představuje klíčovou komponentu pro získávání metrik o aktivitě vývojářů, jež jsou následně zpracovávány a vizualizovány uživatelům. Přestože je primárním cílem integrace platforem GitHub a GitLab, architektura byla navržena s ohledem na možnou budoucí rozšiřitelnost o další poskytovatele.
+
+\subsection{Architektura řešení}
+Pro zajištění modularity a snadné udržovatelnosti kódu byl při návrhu synchronizačního procesu kladen důraz na abstrakci. V rámci hlavní logiky aplikace nejsou využívána přímá volání specifických API jednotlivých služeb, ale komunikace je realizována výhradně prostřednictvím definovaných rozhraní.
+
+\dirtree{%
+  .1 .
+  .1 Drivers\DTcomment{složka s podporovanými VCS}.
+    .2 GitHub.
+      .3 GitHubAuthenticator.php\DTcomment{zajišťuje autentizaci požadavku}.
+      .3 GitHubMapper.php\DTcomment{mapuje výsledky GraphQL dotazů na DTO}.
+      .3 GitHubProviderFactory.php\DTcomment{vytváří GitProvider instanci}.
+      .3 GitHubQueryRepository.php\DTcomment{obsahuje GraphQL dotazy}.
+    .2 GitLab\DTcomment{obsahuje typově stejné soubory jako složka GitHub}.
+  .1 Interfaces\DTcomment{rozhraní, která musí každý VCS implementovat}.
+    .2 Authenticator.php.
+    .2 Mapper.php.
+    .2 QueryRepository.php.
+  .1 GitProvider.php\DTcomment{obsahuje hlavní logiku pro synchronizaci}.
+  .1 GitProviderFactory.php\DTcomment{factory}.
+}
+
+\vspace{10pt}
+
+Jak je patrné z výše uvedené adresářové struktury, ve složce \texttt{Drivers} jsou umístěny konkrétní implementace pro služby GitHub a GitLab. Vztah mezi jednotlivými třídami a rozhraními, který je založen na aplikaci návrhového vzoru Strategy, je schematicky znázorněn na obrázku \ref{figure:strategy-pattern}. Díky tomuto přístupu v kombinaci se vzorem Factory není systém pevně vázán na konkrétní systém pro správu verzí. Případné budoucí rozšíření o nového poskytovatele by vyžadovalo pouze implementaci příslušného driveru splňujícího předepsaná rozhraní, a to bez nutnosti zásahu do existující logiky synchronizace.
+
+\begin{figure}[h]
+    \caption{Využití návrhového vzoru Strategy při získávání dat z VCS}
+    \label{figure:strategy-pattern}
+    \centering
+    \includegraphics[width=0.98\linewidth]{images/strategy-pattern.pdf}
+\end{figure}
+
+Samotný proces získávání dat je realizován v definované posloupnosti kroků, která využívá výše popsané komponenty. Nejprve je požadavek autentizován prostřednictvím komponenty \texttt{Authenticator}. Následně je z \texttt{QueryRepository} získán konkrétní GraphQL dotaz a je provedeno samotné vykonání požadavku vůči API poskytovatele. V závěrečné fázi je výsledek dotazu transformován pomocí komponenty \texttt{Mapper} na DTO, se kterým aplikace dále pracuje.
+
+\subsection{Autentizace požadavku}
