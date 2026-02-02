@@ -35,3 +35,12 @@ Jak je patrné z výše uvedené adresářové struktury, ve složce \texttt{Dri
 Samotný proces získávání dat je realizován v definované posloupnosti kroků, která využívá výše popsané komponenty. Nejprve je požadavek autentizován prostřednictvím komponenty \texttt{Authenticator}. Následně je z \texttt{QueryRepository} získán konkrétní GraphQL dotaz a je provedeno samotné vykonání požadavku vůči API poskytovatele. V závěrečné fázi je výsledek dotazu transformován pomocí komponenty \texttt{Mapper} na DTO, se kterým aplikace dále pracuje.
 
 \subsection{Autentizace požadavku}
+Pro autentizaci požadavků vůči platformám GitHub a GitLab je využívána HTTP hlavička \texttt{Authorization}, která je součástí každého odchozího volání. Z bezpečnostních důvodů je doporučen aplikovat princip minimálních oprávnění, kdy je přístup omezen výhradně na čtení dat nezbytných pro sběr metrik. Tímto opatřením je minimalizováno riziko zneužití v případě potenciálního úniku přístupových údajů.
+
+\subsubsection{GitHub}
+Pro autentizaci požadavků u platformy GitHub byla zvolena metoda prostřednictvím GitHub App. Privátní klíč, nezbytný pro generování instalačních tokenů, je uložen v konfiguračním souboru \texttt{.env}, který není součástí verzovacího systému. Vzhledem k hodinové platnosti instalačních tokenů je implementován mechanismus jejich ukládání do mezipaměti. K obnově dochází až po vypršení platnosti, čímž je efektivně redukován počet nutných volání API pro autentizaci. Konfigurace GitHub App vyžaduje nastavení oprávnění \texttt{Repository permissions – Pull requests} v režimu \texttt{Read-only}.
+
+\subsubsection{GitLab}
+V případě platformy GitLab byl pro autentizaci zvolen přístup prostřednictvím přístupových tokenů. S ohledem na nižší implementační složitost byla tato metoda upřednostněna před komplexnějším řešením využívajícím protokol OAuth 2.0. Pro zajištění korektní synchronizace dat je u tokenu vyžadován rozsah oprávnění \texttt{read\_api}. Samotné tokeny jsou v databázi aplikace uchovávány v šifrované podobě.
+
+\subsection{Proces synchronizace a plánování úloh}
