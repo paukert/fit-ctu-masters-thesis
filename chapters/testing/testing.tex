@@ -92,3 +92,51 @@ Samotný proces testování byl rozdělen do několika fází:
 \end{description}
 
 \subsection{Průběh a vyhodnocení}
+Následující sekce shrnuje průběh testování jednotlivých scénářů a prezentuje zpětnou vazbu získanou od účastníků. Poznatky jsou strukturovány dle jednotlivých úkolů definovaných v testovacích scénářích.
+
+V rámci prvního scénáře, který byl zaměřen na registraci nového uživatele, nebyly ze strany testujících zaznamenány žádné komplikace. Celý proces byl účastníky hodnocen jako standardní, intuitivní a k jeho dokončení došlo ve~všech případech bez obtíží.
+
+Rovněž editace uživatelského profilu a změna barevného schématu aplikace z druhého scénáře proběhla bez problémů. Sekce s uživatelským nastavením byla všemi respondenty lokalizována v krátkém časovém úseku, z čehož lze vyvozovat vhodné umístění prvků sekundární navigace.
+
+U třetího scénáře, týkajícího se zobrazení vizualizací na hlavním dashboardu, byly vzneseny konkrétní návrhy na vylepšení uživatelského rozhraní a celkové použitelnosti. Jedním z testerů bylo doporučeno, aby vyhledávací pole trvale zobrazovalo jména aktuálně vybraných uživatelů. Dále byla zmíněna absence agregovaných statistik, které by umožnily rychlejší porovnání výkonnosti. V rámci zvýšení přístupnosti byly navrženy úpravy chování kurzoru myši u interaktivních prvků a modifikace zobrazení nápovědy v záhlaví tabulek.
+
+Proces přidávání a odstraňování repozitářů byl hodnocen převážně kladně, avšak byl identifikován dílčí problém v mechanismu vyhledávání dostupných projektů. Pro platformu GitHub bylo systémem vyžadováno zadání přesného názvu repozitáře, přičemž během vyhledávání byla uživateli chybně zobrazována informace o nenalezení výsledků. Přestože bylo toto chování popsáno v nápovědě, v rámci budoucího rozvoje aplikace bude nezbytné logiku vyhledávání optimalizovat. Dále bylo jedním testerem doporučeno implementovat vizuální indikaci typu VCS instance, což by přispělo k lepší orientaci uživatele.
+
+Závěrečný úkol, spočívající v párování účtů z různých systémů pro správu verzí, byl splněn bez technických obtíží. Z testování však vyplynul požadavek na doplnění vizuální indikace původu účtu. Bylo doporučeno, aby byla u každého uživatele kromě názvu instance explicitně uvedena informace, zda se jedná o platformu GitHub nebo GitLab.
+
+Po dokončení úkolů z testovacích scénářů proběhla s účastníky diskuze, která přinesla další podněty k rozšíření funkcionality systému. Jedním z testerů byl navržen mechanismus umožňující paralelní srovnání aktivity vývojářů. Dále byla doporučena implementace týdenních a měsíčních grafických přehledů, jež by sloužily k analýze vývoje metrik v delším časovém období. Mezi další zaznamenané podněty patřil požadavek na možnost manuálního spuštění synchronizace dat. Z hlediska optimalizace uživatelského rozhraní bylo rovněž navrženo, aby při aktivaci vyhledávacího pole docházelo k okamžitému načtení a zobrazení dostupných záznamů.
+
+Pro přehlednost byly nalezené chyby a návrhy na vylepšení zaneseny do~tabulek \ref{table:testing-errors} a \ref{table:testing-improvements}. U identifikovaných chyb byla stanovena jejich závažnost a odhadnuta náročnost opravy. Obdobné hodnocení bylo doplněno i k návrhům na~vylepšení, což umožní stanovení priorit v další fázi vývoje systému.
+
+\begin{table}[h]
+    \centering
+    \caption{Nalezené chyby a jejich hodnocení}
+    \label{table:testing-errors}
+    \begin{tabularx}{\textwidth}{|c|X|c|c|}
+    \hline
+    \# & Popis chyby                                        & Závažnost & Náročnost \\ \hline\hline
+    1  & Vyhledání GitHub repozitářů vyžaduje přesnou shodu & Střední   & Střední   \\ \hline
+    2  & Nesprávný typ kurzoru myši u interaktivních prvků  & Střední   & Nízká     \\ \hline
+    3  & Pomalé zobrazení nápovědy v záhlaví tabulek        & Střední   & Nízká     \\ \hline
+    \end{tabularx}
+\end{table}
+
+\begin{table}[h]
+    \centering
+    \caption{Návrhy na vylepšení a jejich hodnocení}
+    \label{table:testing-improvements}
+    \begin{tabularx}{\textwidth}{|c|X|c|c|}
+    \hline
+    \# & Popis návrhu                                                       & Priorita & Náročnost \\ \hline\hline
+    1  & Indikace původu účtu u párování uživatelů                          & Střední  & Nízká     \\ \hline
+    2  & Trvalé zobrazování aktuálně vybraných položek ve vyhledávacím poli & Střední  & Nízká     \\ \hline
+    3  & Zobrazování agregovaných statistik za zvolené období               & Vysoká   & Střední   \\ \hline
+    4  & Zobrazování týdenních a měsíčních statistik v grafech              & Střední  & Vysoká    \\ \hline
+    5  & Paralelní srovnání aktivity vývojářů                               & Nízká    & Vysoká    \\ \hline
+    6  & Načtení záznamů do vyhledávacího pole po jeho otevření             & Střední  & Střední   \\ \hline
+    7  & Ruční spuštění synchronizace dat                                   & Nízká    & Nízká     \\ \hline
+    8  & Zobrazení typu instance při vytváření repozitáře                   & Střední  & Nízká     \\ \hline
+    \end{tabularx}
+\end{table}
+
+\subsection{Provedené úpravy}
