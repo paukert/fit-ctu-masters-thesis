@@ -44,3 +44,23 @@ Pro autentizaci požadavků u platformy GitHub byla zvolena metoda prostřednict
 V případě platformy GitLab byl pro autentizaci zvolen přístup prostřednictvím přístupových tokenů. S ohledem na nižší implementační složitost byla tato metoda upřednostněna před komplexnějším řešením využívajícím protokol OAuth 2.0. Pro zajištění korektní synchronizace dat je u tokenu vyžadován rozsah oprávnění \texttt{read\_api}. Samotné tokeny jsou v databázi aplikace uchovávány v šifrované podobě.
 
 \subsection{Proces synchronizace a plánování úloh}
+Při návrhu synchronizačního mechanismu byl kladen důraz na minimalizaci počtu požadavků prováděných vůči externím API. Z tohoto důvodu jsou z procesu vyloučena data již uložená v systému, která od poslední kontroly nebyla modifikována. Mechanismus se tak zaměřuje výhradně na pull requesty aktualizované po čase poslední úspěšné synchronizace. Za aktualizaci je v tomto kontextu považována jakákoliv aktivita vedoucí ke změně atributu \texttt{updatedAt} na straně platforem GitHub nebo GitLab. Mezi tyto aktivity se řadí například přidání nového commitu, vložení komentáře či změna stavu pull requestu.
+
+V průběhu vývoje byla zvažována i možnost synchronizace pouze dílčích změn v rámci jednotlivých pull requestů. Vzhledem k vysoké komplexitě implementace a limitacím u jednotlivých API, které například neumožňují efektivní filtrování komentářů dle data přidání, bylo od tohoto přístupu nakonec upuštěno. Současné řešení proto vždy získává kompletní data pro daný pull request.
+
+Samotný proces synchronizace tedy probíhá v následujících krocích:
+\begin{enumerate}
+  \item \textbf{Identifikace změněných pull requestů}\\
+  V prvním kroku jsou ze systémů pro správu verzí softwaru získány identifikátory pull requestů, u kterých došlo k aktualizaci od poslední úspěšné synchronizace. V případě, že synchronizace pro daný repozitář dosud neproběhla, jsou načteny všechny záznamy od definovaného počátečního data.
+  \item \textbf{Iterativní získávání detailních dat}\\
+  Na základě identifikátorů získaných v předchozím kroce je zahájeno iterativní zpracování. Pro každý jednotlivý pull request je proveden samostatný GraphQL dotaz, jehož cílem je získání kompletních dat. Tento postup, kdy nejsou data stahována hromadně pro více položek současně, je vynucen limity komplexity dotazů, které jsou uplatňovány v rámci systému GitLab.
+
+  U platformy GitLab je pro autentizované uživatele limit komplexity stanoven na 250 bodů, přičemž dotaz pro získání informací o jednom pull requestu dosahuje hodnoty 83 bodů. Naproti tomu u platformy GitHub je limit pro GitHub App stanoven na 5 000 bodů za hodinu a cena dotazu pro získání dat činí 1 bod.
+
+  Pokud konkrétní pull request obsahuje velké množství komentářů či jiných entit, které přesahují limity jednoho dotazu, jsou tato data získána pomocí mechanismu stránkování v dodatečných dotazech. Mezi zpracováním jednotlivých pull requestů je vložena krátká časová prodleva, čímž je eliminováno riziko překročení limitu počtu požadavků za sekundu.
+\end{enumerate}
+
+Plánování a spouštění synchronizačních úloh je realizováno na úrovni jednotlivých repozitářů. U každého repozitáře je možné nastavit frekvenci synchronizace na 1, 4, 6, 12 nebo 24 hodin. O samotné spouštění úloh se stará plánovač, který s využitím nástroje Ofelia kontroluje každou minutu, zda nastal čas pro spuštění synchronizace konkrétního repozitáře.
+
+\subsection{Omezení současného řešení}
+S ohledem na komplexitu synchronizačního procesu podléhá implementované řešení určitým limitacím. U jednotlivých pull requestů byl počet uživatelů, kteří změny schválili nebo jim byla přidělena jejich kontrola, omezen na 100. Překročení této hranice je systémem zaznamenáváno, přičemž architektura aplikace umožňuje v případě potřeby tento limit navýšit. Dále je nutné zmínit, že historická data, zahrnující například komentáře nebo přiřazení uživatelů, zůstávají v databázi aplikace zachována i po jejich odstranění ze zdrojového systému pro správu verzí. Tento přístup byl zvolen primárně pro zajištění podpory více reviewers i v rámci bezplatného tarifu platformy GitLab.
