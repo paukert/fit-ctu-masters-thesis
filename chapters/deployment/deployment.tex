@@ -1,8 +1,45 @@
 \chapter{Nasazení}
+Tato kapitola se zabývá procesem zprovoznění a nasazení implementované aplikace. Nejprve bude podrobněji představen způsob využití technologie Docker. Následně bude uveden podrobný popis postupu pro spuštění systému v lokálním vývojovém prostředí a bude přiblíženo nastavení integrace s externími službami. V závěru kapitoly bude popsán proces nasazení aplikace s využitím cloudové platformy Render.
 
-\section{Požadovaný software}
+\section{Docker}
+Celá aplikace je navržena pro provoz v izolovaném prostředí pomocí technologie Docker. Pro optimalizaci procesu sestavení je využíván mechanismus vícefázového sestavení. Tento přístup přináší následující klíčové benefity:
 
-\section{Postup pro zprovoznění}
+\begin{itemize}
+    \item \textbf{Minimalizace času sestavení}: Díky rozdělení procesu do jednotlivých fází je umožněno využití již vytvořených vrstev. Tím je zamezeno opakování redundantních operací, což vede k výrazné časové úspoře při opětovném sestavování.
+    \item \textbf{Snížení velikosti výsledného obrazu}: Do finálního obrazu se přenášejí pouze nezbytné soubory a zkompilovaný kód. Jelikož vývojové nástroje a meziprodukty zůstávají v předchozích fázích, je výsledná velikost obrazu minimalizována.
+    \item \textbf{Oddělení prostředí}: Definice konkrétních cílů umožňuje z jediného konfiguračního souboru generovat specifické obrazy optimalizované pro odlišné účely.
+\end{itemize}
+
+Pro účely této práce byly definovány dva cíle sestavení aplikace. Pro potřeby lokálního vývoje byl navržen cíl \texttt{development} a pro produkční prostředí byl specifikován cíl \texttt{production}.
+
+\begin{itemize}
+    \item \texttt{development}: Tato konfigurace je rozšířena o nástroj xDebug, který slouží k pokročilému ladění zdrojového kódu v jazyce PHP. Dále je integrováno prostředí Node.js verze 24 pro práci se závislostmi v jazyce JavaScript.
+    \item \texttt{production}: Tento cíl byl nastaven jako výchozí a výsledný obraz je optimalizován s důrazem na minimalizaci jeho celkové velikosti. I z tohoto důvodu nebyly do obrazu zahrnuty vývojové nástroje, jako je například prostředí Node.js či adresář \texttt{node\_modules}.
+\end{itemize}
+
+Implementace cíle \texttt{production} je součástí výpisu kódu \ref{listing:dockerfile}. Proces sestavení začíná zkopírováním PHP závislostí a sestavených assetů z předchozích fází \texttt{vendor} a \texttt{node}. Následně jsou zkopírovány samotné zdrojové kódy aplikace a je provedeno nastavení vlastnických oprávnění. Příkazem \texttt{CMD} je definována sekvence kroků prováděných při startu kontejneru: nejprve jsou spuštěny databázové migrace, poté je vykonán příkaz \texttt{php artisan optimize} pro optimalizaci výkonu frameworku a nakonec je spuštěn webový server Apache.
+
+\begin{listing}[h!]
+    \caption{Cíl production z Dockerfile souboru}\label{listing:dockerfile}
+    \begin{minted}{dockerfile}
+FROM base AS production
+WORKDIR /var/www/html
+
+COPY --from=vendor /var/www/html/vendor/ ./vendor/
+COPY --from=node /app/public/build/ ./public/build/
+COPY . .
+
+RUN chown -R www-data:www-data bootstrap/cache storage
+RUN chmod -R 775 bootstrap/cache storage
+
+CMD composer dump-autoload --optimize --no-dev --strict-ambiguous \
+    && php artisan migrate --force \
+    && php artisan optimize \
+    && exec apache2-foreground
+    \end{minted}
+\end{listing}
+
+\section{Spuštění na lokálním prostředí}
 
 \section{Nastavení intergrace s externími systémy}
 
