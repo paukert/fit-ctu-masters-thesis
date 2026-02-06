@@ -39,7 +39,53 @@ CMD composer dump-autoload --optimize --no-dev --strict-ambiguous \
     \end{minted}
 \end{listing}
 
+\newpage
 \section{Spuštění na lokálním prostředí}
+Pro zprovoznění aplikace na lokálním prostředí je nutné provést kroky popsané v této sekci. Předpokladem pro úspěšné spuštění je nainstalovaný nástroj Docker a stažený repozitář se zdrojovým kódem projektu. Veškeré kroky by měly být prováděny v kořenovém adresáři projektu.
+
+\begin{enumerate}
+    \item vytvoření konfiguračního souboru \texttt{.env}, obsah lze zkopírovat ze vzorového souboru \texttt{.env.example}
+
+    \item sestavení a spuštění aplikačních kontejnerů a databáze
+    \begin{minted}{bash}
+docker-compose up -d
+    \end{minted}
+
+    \item instalace závislostí pro backendovou část aplikace
+    \begin{minted}{bash}
+docker-compose exec php php composer install
+    \end{minted}
+
+    \item instalace závislostí pro JavaScript a sestavení single page aplikace
+    \begin{minted}{bash}
+docker-compose exec php npm install
+docker-compose exec php npm run build
+    \end{minted}
+
+    \item vygenerování bezpečnostního klíče aplikace
+    \begin{minted}{bash}
+docker-compose exec php php artisan key:generate
+    \end{minted}
+
+    \item provedení databázových migrací pro vytvoření schématu
+    \begin{minted}{bash}
+docker-compose exec php php artisan migrate
+    \end{minted}
+
+    V rámci procesu migrace je v systému automaticky vytvořen administrátorský účet s následujícími přihlašovacími údaji:
+    \vspace{-2mm}
+    \begin{itemize}
+        \item e-mail: \texttt{admin@devpulse.com}
+        \item heslo: \texttt{password}
+    \end{itemize}
+
+    \item naplnění databáze testovacími daty (volitelné)
+    \begin{minted}{bash}
+docker-compose exec php php artisan db:seed 
+    \end{minted}
+\end{enumerate}
+
+Po úspěšném provedení výše uvedených kroků je systém dostupný prostřednictvím webového prohlížeče na adrese \texttt{http://localhost/}. V případě potřeby lze všechny běžící kontejnery zastavit příkazem \texttt{docker-compose down}.
 
 \section{Nastavení intergrace s externími systémy}
 
