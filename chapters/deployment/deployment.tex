@@ -87,12 +87,34 @@ docker-compose exec php php artisan db:seed
 
 Po úspěšném provedení výše uvedených kroků je systém dostupný prostřednictvím webového prohlížeče na adrese \texttt{http://localhost/}. V případě potřeby lze všechny běžící kontejnery zastavit příkazem \texttt{docker-compose down}.
 
-\section{Nastavení intergrace s externími systémy}
+\section{Nastavení integrace s externími systémy}
+Pro zajištění korektní synchronizace dat je nezbytné provést konfiguraci propojení s externími systémy pro správu verzí. Následující sekce popisují proces získání požadovaných autentizačních údajů a postup jejich nastavení v rámci vytvořené aplikace.
 
 \subsection{GitHub App}
+Integrace s platformou GitHub je realizována prostřednictvím registrace nové GitHub App, která může být vytvořena pod osobním účtem či v rámci organizace. V průběhu vytváření aplikace je vyžadováno vyplnění pouze jejího názvu a URL domovské stránky. Pro zajištění funkčnosti synchronizace je následně nezbytné udělit oprávnění v sekci \texttt{Repository permissions}, konkrétně pro~\texttt{Pull requests} v režimu \texttt{Read-only}.
+
+Po dokončení registrace je aplikaci automaticky přidělen unikátní identifikátor \texttt{Client ID}. Pro získání privátního klíče je nutné provést jeho manuální vygenerování v administračním rozhraní aplikace. Tyto údaje je následně nezbytné vložit do~konfiguračního souboru \texttt{.env} pod klíči \texttt{GITHUB\_APP\_CLIENT\_ID} a \texttt{GITHUB\_APP\_PRIVATE\_KEY}. Závěrečným krokem je instalace aplikace do cílového účtu či organizace na platformě GitHub. Tímto úkonem je získán identifikátor \texttt{installation\_id}, který je nutné uvést při vytváření nové instance systému správy verzí v administraci vytvořené aplikace.
 
 \subsection{GitLab}
+V případě platformy GitLab je proces autentizace a následný přístup k datům realizován prostřednictvím přístupových tokenů. Z hlediska architektury vytvořeného systému je doporučeno využívat osobní či skupinové tokeny. V případě využití projektových tokenů by byla vyžadována konfigurace nové instance pro správu verzí pro každý sledovaný repozitář.
+
+Při generování přístupového tokenu je nezbytné udělit oprávnění \texttt{read\_api}, které je vyžadováno pro synchronizaci dat. Na rozdíl od platformy GitHub není vygenerovaný token ukládán do konfiguračního souboru \texttt{.env}, ale je vkládán přímo do příslušného formuláře v průběhu vytváření nové instance systému pro správu verzí softwaru.
 
 \subsection{E-mailový server}
+Nedílnou součástí konfigurace produkčního prostředí je nastavení e-mailového serveru. Ve výchozím nastavení, které je definováno v souboru \texttt{.env.example}, je pro odesílání e-mailů nastaven ovladač \texttt{log}. Při využití tohoto ovladače avšak nedochází k reálné distribuci zpráv příjemcům, ale k jejich zápisu do~souboru \texttt{storage/logs/laravel.log}. Pro reálné odesílání e-mailů je nutné zvolit například ovladač \texttt{smtp}. V konfiguračním souboru \texttt{.env} musí být v tomto případě definovány hodnoty proměnných, které specifikují hostitele, port a autentizační údaje k příslušnému poštovnímu serveru. Seznam požadovaných proměnných je uveden na následujícím výpisu kódu.
 
-\section{PaaS Render}
+\begin{minted}{bash}
+MAIL_MAILER=smtp
+MAIL_HOST=
+MAIL_PORT=
+MAIL_USERNAME=
+MAIL_PASSWORD=
+MAIL_FROM_ADDRESS=
+\end{minted}
+
+\section{Render}
+Pro hostování aplikace byla zvolena platforma Render. Jedná se o cloudovou službu typu Platform as a Service, která umožňuje provozovat webové aplikace a související služby bez nutnosti správy vlastní serverové infrastruktury. V rámci realizovaného řešení je na této platformě hostována nejen samotná aplikační vrstva, ale také relační databáze MariaDB a plánovač úloh, který zajišťuje pravidelnou synchronizaci dat ze systémů pro správu verzí softwaru.
+
+Celý proces nasazení byl plně automatizován díky přímé integraci s verzovacím systémem GitHub. Konfigurace zajišťuje, že při přidání commitu do~větve \texttt{master} dojde k automatickému sestavení a nasazení nové verze aplikace. Pro~korektní běh systému bylo nutné na straně poskytovatele definovat proměnné prostředí, které odpovídají obsahu lokálního souboru \texttt{.env}.
+
+Z bezpečnostního hlediska je produkční verze, na rozdíl od lokálního vývojového prostředí, provozována výhradně na šifrovaném protokolu HTTPS. Výsledná aplikace byla zpřístupněna na doméně \texttt{devpulse.paukertlukas.cz}. Pro odesílání e-mailových notifikací byl systém propojen s externím SMTP serverem služby Mailtrap.
