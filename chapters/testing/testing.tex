@@ -140,3 +140,8 @@ Pro přehlednost byly nalezené chyby a návrhy na vylepšení zaneseny do~tabul
 \end{table}
 
 \subsection{Provedené úpravy}
+Na základě zpětné vazby získané od prvních dvou účastníků uživatelského testování byla provedena řada úprav vedoucích k odstranění identifikovaných nedostatků a zvýšení celkové použitelnosti aplikace. Tyto modifikace byly realizovány před zahájením testování systému dalšími uživateli, aby byla zajištěna vyšší efektivita následného ověřování.
+
+První sada oprav cílila na zlepšení interakce s uživatelským rozhraním. U komponenty \texttt{ApiCombobox} byla provedena korekce chování kurzoru myši (chyba č. 2), který nyní při interakci s klikatelnými prvky správně nabývá podoby \texttt{pointer}. Dále byla eliminována prodleva při zobrazování nápovědy v záhlaví tabulek (chyba č. 3), čímž bylo docíleno okamžité reakce rozhraní na~uživatelské interakce.
+
+Kromě oprav chyb byly implementovány také vybrané návrhy na vylepšení, jež byly s ohledem na poměr implementační náročnosti a uživatelského přínosu vyhodnoceny jako prioritní. Pro zvýšení přehlednosti procesu párování uživatelských účtů byl doplněn vizuální indikátor typu VCS platformy (návrh č. 1). Úpravou prošla rovněž komponenta \texttt{ApiCombobox}, využívaná například pro vyhledávání uživatelů na hlavním dashboardu. Na základě uživatelských podnětů bylo implementováno trvalé zobrazování aktuálně vybraných položek i během aktivního filtrování záznamů (návrh č. 2).
