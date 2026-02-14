@@ -1,5 +1,5 @@
-\subsection{Grafy}
-Pro vizualizaci aktivit vývojářů byla zvolena knihovna Highcharts, jež byla do prostředí frameworku Vue.js integrována prostřednictvím rozšiřujícího modulu \texttt{highcharts-vue}. V rámci implementace byly vytvořeny dvě specializované komponenty: \texttt{LineChart} a \texttt{PolarChart}. Tyto komponenty zajišťují zapouzdření logiky vykreslování a oddělují prezentační vrstvu od datové.
+%\subsection{Grafy}
+Pro grafickou vizualizaci aktivit vývojářů byla zvolena knihovna Highcharts, jež byla do prostředí frameworku Vue.js integrována prostřednictvím rozšiřujícího modulu \texttt{highcharts-vue}. V rámci implementace byly vytvořeny dvě specializované komponenty: \texttt{LineChart} a \texttt{PolarChart}. Tyto komponenty zajišťují zapouzdření logiky vykreslování a oddělují prezentační vrstvu od datové.
 
 Vzhled a chování jednotlivých grafů je definováno prostřednictvím konfiguračních objektů. Samotná data jsou komponentám předávána dynamicky z příslušného controlleru. Pro zajištění konzistence zobrazení a minimalizaci duplicity kódu dochází uvnitř komponent ke sloučení těchto vstupních dat s výchozím nastavením. Ukázka implementace komponenty pro liniový graf, demonstrující dynamické skládání konfiguračního objektu, je uvedena na výpisu kódu \ref{listing:highcharts-example}.
 
