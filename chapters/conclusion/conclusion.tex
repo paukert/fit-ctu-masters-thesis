@@ -1,7 +1,20 @@
 \chapter{Závěr}
 
 \section{Vyhodnocení práce a splnění cílů}
+Hlavním cílem této diplomové práce byl návrh a implementace open source webové aplikace určené k prezentaci aktivity vývojářů a ke zvýšení jejich motivace prostřednictvím gamifikačních prvků.
+
+V teoretické části práce byly nejprve představeny systémy pro správu verzí softwaru GitHub a GitLab, přičemž pozornost byla věnována především jejich webovým API. Významnou část teoretické části dále tvořila rešerše metrik používaných pro měření kvality a produktivity práce vývojářů, v rámci níž byly představeny standardy SPACE a DORA. Na tuto rešerši navázala analýza možností motivace vývojářů a principů gamifikace. Následně byly specifikovány funkční a nefunkční požadavky kladené na vyvíjený systém a byla provedena analýza existujících řešení.
+
+Na základě poznatků z teoretické části byla v praktické fázi navržena a následně implementována webová aplikace. Pro realizaci byly zvoleny moderní technologie zahrnující kontejnerizační nástroj Docker, programovací jazyk PHP s frameworkem Laravel a pro klientskou část Vue.js v kombinaci s knihovnou Inertia.js. Výsledný systém podporuje napojení na soukromé i veřejné instance platforem GitLab a GitHub, přičemž architektura aplikace byla navržena s důrazem na modularitu a možný budoucí rozvoj o další verzovací systémy. Kvalita zdrojového kódu byla průběžně validována nástroji pro statickou analýzu Larastan a ESLint. V závěru implementační fáze byly rovněž diskutovány směry dalšího možného rozšiřování aplikace.
+
+Vytvořená aplikace byla podrobena uživatelskému testování, jehož výsledky sloužily jako podklad pro finální úpravy a optimalizace systému. Aplikace byla úspěšně nasazena do produkčního prostředí na platformě Render a její zdrojové kódy byly zveřejněny na platformě GitHub. Na základě výše uvedených skutečností lze konstatovat, že veškeré body definované v zadání diplomové práce byly splněny.
 
 \section{Přínos a praktické využití}
+Výsledkem práce je plně funkční aplikace připravená k nasazení do produkčního prostředí, která organizacím a vývojovým týmům poskytuje ucelený pohled na aktivity z procesu vývoje softwaru. Díky konsolidaci dat z různých zdrojů je systémem umožněna transparentní vizualizace aktivit napříč různými projekty a platformami. Při interpretaci jednotlivých metrik je však nezbytné zohlednit specifické procesy definované v rámci konkrétní organizace.
+
+Přínosem je rovněž implementace gamifikačních mechanismů ve formě krátkodobých i dlouhodobých výzev a ocenění za aktivitu, které mohou přispět ke~zvýšení motivace uživatelů a podpořit zdravou soutěživost uvnitř týmů.
+
+Realizací projektu bylo rovněž dosaženo prohloubení odborných znalostí autora v oblasti moderních webových technologií, konkrétně v rámci ekosystému Vue.js a Inertia.js a PHP frameworku Laravel.
 
 \section{Budoucí rozvoj}
+Ačkoliv implementované řešení splňuje veškeré požadavky definované v zadání práce, v průběhu vývoje a uživatelského testování byly identifikovány oblasti, které by mohly být předmětem dalšího rozvoje. Mezi navrhovaná rozšíření patří implementace mechanismů řazení a filtrování u tabulkových přehledů, perzistence filtrů či přímá integrace odkazů do zdrojových systémů. Vzhledem k charakteru agregovaných dat se rovněž nabízí napojení na nástroje business intelligence pro tvorbu komplexních reportů či hlubší analýzu trendů. Na základě zpětné vazby z testování by mohl být systém dále obohacen o grafické přehledy agregované po týdnech a měsících a o možnost manuální synchronizace. Ve vývoji aplikace je plánováno pokračovat a její funkcionalitu nadále rozšiřovat.
