@@ -3,7 +3,7 @@ Pro grafickou vizualizaci aktivit vývojářů byla zvolena knihovna Highcharts,
 
 Vzhled a chování jednotlivých grafů je definováno prostřednictvím konfiguračních objektů. Samotná data jsou komponentám předávána dynamicky z příslušného controlleru. Pro zajištění konzistence zobrazení a minimalizaci duplicity kódu dochází uvnitř komponent ke sloučení těchto vstupních dat s výchozím nastavením. Ukázka implementace komponenty pro liniový graf, demonstrující dynamické skládání konfiguračního objektu, je uvedena na výpisu kódu \ref{listing:highcharts-example}.
 
-Dalším z důležitých aspektů implementace byla podpora světlého a tmavého režimu, která je realizována pomocí modulu \texttt{highcharts/themes/adaptive}. Tento modul zajišťuje automatické přizpůsobení barevného schématu grafů aktuálnímu nastavení aplikace. Detekce preferovaného režimu probíhá na základě systémové preference (pomocí CSS pravidla \texttt{prefers-color-scheme}), případně dle CSS třídy, která je dynamicky přidávána na HTML element \texttt{body} na~základě uživatelského nastavení.
+Dalším aspektem implementace byla podpora světlého a tmavého režimu, která je realizována pomocí modulu \texttt{highcharts/themes/adaptive}. Tento modul zajišťuje automatické přizpůsobení barevného schématu grafů aktuálnímu nastavení aplikace. Detekce preferovaného režimu probíhá na základě systémové preference (pomocí CSS pravidla \texttt{prefers-color-scheme}), případně dle CSS třídy, která je dynamicky přidávána na HTML element \texttt{body} na~základě uživatelského nastavení.
 
 \begin{listing}[h!]
     \caption{Vue.js komponenta s konfigurací grafu}\label{listing:highcharts-example}
