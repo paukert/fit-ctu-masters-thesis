@@ -1,6 +1,7 @@
 \section{Synchronizace dat s VCS}
 Tato podkapitola je věnována implementaci mechanismu synchronizace dat se systémy pro správu verzí softwaru. Tento modul představuje klíčovou komponentu pro získávání metrik o aktivitě vývojářů, jež jsou následně zpracovávány a vizualizovány uživatelům. Přestože je primárním cílem integrace platforem GitHub a GitLab, architektura byla navržena s ohledem na možnou budoucí rozšiřitelnost o další poskytovatele.
 
+\newpage
 \subsection{Architektura řešení}
 Pro zajištění modularity a snadné udržovatelnosti kódu byl při návrhu synchronizačního procesu kladen důraz na abstrakci. V rámci hlavní logiky aplikace nejsou využívána přímá volání specifických API jednotlivých služeb, ale komunikace je realizována výhradně prostřednictvím definovaných rozhraní.
 
@@ -40,6 +41,7 @@ Pro autentizaci požadavků vůči platformám GitHub a GitLab je využívána H
 \subsubsection{GitHub}
 Pro autentizaci požadavků u platformy GitHub byla zvolena metoda prostřednictvím GitHub App. Privátní klíč, nezbytný pro generování instalačních tokenů, je uložen v konfiguračním souboru \texttt{.env}, který není součástí verzovacího systému. Vzhledem k hodinové platnosti instalačních tokenů je implementován mechanismus jejich ukládání do mezipaměti. K obnově dochází až po vypršení platnosti, čímž je efektivně redukován počet nutných volání API pro autentizaci. Konfigurace GitHub App vyžaduje nastavení oprávnění \texttt{Repository permissions – Pull requests} v režimu \texttt{Read-only}.
 
+\newpage
 \subsubsection{GitLab}
 V případě platformy GitLab byl pro autentizaci zvolen přístup prostřednictvím přístupových tokenů. S ohledem na nižší implementační složitost byla tato metoda upřednostněna před komplexnějším řešením využívajícím protokol OAuth 2.0. Pro zajištění korektní synchronizace dat je u tokenu vyžadován rozsah oprávnění \texttt{read\_api}. Samotné tokeny jsou v databázi aplikace uchovávány v šifrované podobě, a to za využití nativních mechanismů frameworku Laravel. K jejich šifrování je využívána proměnná prostředí \texttt{APP\_KEY}. Při následném načítání těchto záznamů z databáze je proces dešifrování zajišťován frameworkem zcela automaticky.
 
