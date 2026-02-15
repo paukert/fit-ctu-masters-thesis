@@ -16,15 +16,16 @@ Informace v následující sekci o SPACE frameworku vychází z publikace \cite{
     \item \textbf{Komunikace a spolupráce}\\
     Nedílnou součástí vývoje softwaru je i komunikace a spolupráce s ostatními členy týmu a dalšími stranami. Pro efektivní spolupráci členů týmu je důležitá transparentnost a vzájemný přehled o prováděných činnostech. Ačkoliv nutnost komunikace s dalšími členy týmu může v daný okamžik ovlivnit produktivitu jednotlivce, tak v celkovém měřítku má efektivní spolupráce pozitivní vliv na rychlost odbavování pull requestů, kvalitu kódu a produktivitu týmu jako celku.
     \item \textbf{Efektivita a flow}\\
-    Zachycuje schopnost dokončit nebo pokročit v práci s minimálním počtem přerušení z individuálního, ale i skupinového pohledu. Tato dimenze může zahrnovat souhru aktivit mezi vývojovými týmy a skutečnost, zda kontinuálně dochází k pokrokům v prováděných činnostech. Někteří lidé si pro zvýšení efektivity vyhrazují časové bloky, kdy se soustředí na své úkoly a nechtějí být vyrušováni od své práce.
+    Zachycuje schopnost dokončit nebo pokročit v práci s minimálním počtem přerušení z individuálního, ale i skupinového pohledu. Tato dimenze může zahrnovat souhru aktivit mezi vývojovými týmy a skutečnost, zda kontinuálně dochází k pokrokům v prováděných činnostech. Někteří lidé si pro~zvýšení efektivity vyhrazují časové bloky, kdy se soustředí na své úkoly a nechtějí být vyrušováni od své práce.
 \end{enumerate}
 
 % Konkrétní příklad použití SPACE frameworku je možné demonstrovat na metrikách spojených s code review procesem. Do první dimenze by bylo možné například zařadit, jestli je uživatel spokojen s přiřazenými code reviews a jak uživatel celkově vnímá code review proces -- jestli mu přináší nové znalosti nebo zda znalosti rád předává dalším kolegům. Druhá dimenze by mohla zahrnovat rychlost provedení review procesu, třetí například počet dokončených reviews nebo čas strávený nad samotnou implementací. Samotný code review proces je příkladem komunikace a spolupráce, která představuje čtvrtou dimenzi. Z metrik by sem bylo možné například zařadit čas do mergnutí pull requestu nebo počet napsaných komentářů. Poslední dimenze by následně mohla zahrnovat načasování code review společně s tím, zda byl review proces vnímán produktivně a zda nebyl v průběhu přerušován.
 
-Ačkoliv SPACE framework definuje celkem pět různých dimenzí, tak pro získání užitečných výstupů není potřeba sledovat metriky z každé z nich. Autoři SPACE frameworku dokonce varují před sledováním velkého počtu metrik se stanovenými cíly, neboť vysoký počet cílů může u vývojářů vzbuzovat pocit, že jich nemohou dosáhnout. Pro vypovídající výstupy, které mohou sloužit například jako podklady pro rozhodnutí o změnách ve vývojovém procesu, je doporučeno sledovat pár metrik minimálně ze tří různých dimenzí.
+Ačkoliv SPACE framework definuje celkem pět různých dimenzí, tak pro~získání užitečných výstupů není potřeba sledovat metriky z každé z nich. Autoři SPACE frameworku dokonce varují před sledováním velkého počtu metrik se stanovenými cíly, neboť vysoký počet cílů může u vývojářů vzbuzovat pocit, že jich nemohou dosáhnout. Pro vypovídající výstupy, které mohou sloužit například jako podklady pro rozhodnutí o změnách ve vývojovém procesu, je doporučeno sledovat pár metrik minimálně ze tří různých dimenzí.
 
+\newpage
 \subsubsection{DORA metriky}\label{section:dora}
-Tým DevOps Research and Assessment identifikoval čtyři klíčové metriky pro měření efektivity DevOps procesů u vývojových týmů \cite{DORA-metrics, DORA-metrics-framework}:
+Tým DevOps Research and Assessment identifikoval čtyři klíčové metriky pro~měření efektivity DevOps procesů u vývojových týmů \cite{DORA-metrics, DORA-metrics-framework}:
 
 \begin{enumerate}
     \item \textbf{Frekvence nasazování}\\
@@ -53,7 +54,7 @@ Standardy pro měření výkonnosti vývojářů, jako jsou SPACE framework nebo
         \item základní metadata -- název, popis, stav (otevřený, uzavřený, sloučený), autor, zdrojová a cílová větev, přiřazené štítky a milníky;
         \item časová data -- datum a čas vytvoření, poslední aktualizace, sloučení či uzavření pull requestu;
         \item code review -- seznam reviewerů, jejich komentáře, návrhy změn, informace o schválení změn;
-        \item technická data -- seznam commitů, počet změněných souborů, počet přidaných a odstraněných řádků a informace o případných konfliktech při sloučení.
+        \item technická data -- seznam commitů, počet změněných souborů, počet přidaných a odstraněných řádků a informace o případných konfliktech při~sloučení.
     \end{itemize}
 
     \item \textbf{CI/CD}\\
@@ -85,7 +86,7 @@ V souvislosti s code review procesem lze sledovat mnoho různých metrik, které
 \begin{itemize}[topsep=4pt, itemsep=2pt]
     \item počet přidaných komentářů;
     \item počet vyřešených diskuzí (vláken);
-    \item počet iterací code review (kolikrát byl obsah pull requestu upraven na základě zpětné vazby od reviewera);
+    \item počet iterací code review (kolikrát byl obsah pull requestu upraven na~základě zpětné vazby od reviewera);
     \item počet vytvořených pull requestů;
     \item poměr počtu pull requestů, které byly mergnuty, vůči těm, které byly uzavřeny bez zahrnutí změn.
 \end{itemize}
@@ -98,7 +99,7 @@ Z pohledu reviewera mohou metriky zahrnovat jak kvantitativní ukazatele, tak je
     \item průměrný čas zahájení review procesu u nových pull requestů;
     \item poměr diskuzí, které vedly ke změně kódu, vůči celkovému počtu diskuzí;
     \item průměrnou délku komentářů;
-    \item typ napsaných komentářů (například návrhy na zlepšení, upozornění na chyby, otázky či pochvaly);
+    \item typ napsaných komentářů (například upozornění na chyby, návrhy na zlepšení, otázky či pochvaly);
     \item strukturovanost komentářů (dodržování standardů jako conventional comments);
     \item počet provedených reviews.
 \end{itemize}
