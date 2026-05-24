@@ -19,9 +19,13 @@ jobs:
       - name: Build Thesis
         run: latexmk -pdfxe -shell-escape ctufit-thesis.tex
 
+      - name: Build Presentation
+        run: latexmk -pdfxe -cd presentation/ctufit-presentation.tex
+
       - name: Rename PDF Files
         run: |
           mv ctufit-thesis.pdf dp-paukert.pdf
+          mv presentation/ctufit-presentation.pdf dp-paukert-presentation.pdf
 
       - name: Upload Thesis Files
         uses: actions/upload-artifact@v4
