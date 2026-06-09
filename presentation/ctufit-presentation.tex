@@ -37,16 +37,20 @@
 % sage: changes layout so it matches SAGELAB screen size
 % colour: colour theme of the presentation - options are orange (default) or blue
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\documentclass[czech]{ctufit-presentation}
+\documentclass[czech,sage]{ctufit-presentation}
+
+\usepackage[export]{adjustbox}
+\setbeamerfont{itemize/enumerate subbody}{size=\normalsize}
+\setbeamerfont{itemize/enumerate subsubbody}{size=\normalsize}
 
 \usepackage[backend=biber]{biblatex}
 \addbibresource{data.bib}
 
-\ctufittitle{Název prezentace}
-\ctufitsubtitle{Podnadpis prezentace} % Remove the command if you do not want a subtitle on the title slide.
-\ctufitauthor{Author Authorovič} % Remove the command if you do not want the author on the title slide.
-\ctufitdate{\today} % Remove the command if you do not want the date on the title slide.
-\ctufitinstitute{FIT CVUT} % Remove the command if you do not want the institution on the title slide.
+\ctufittitle{Webový gamifikační dashboard\\pro porovnání výkonnosti vývojářů}
+%\ctufitsubtitle{Podnadpis prezentace} % Remove the command if you do not want a subtitle on the title slide.
+\ctufitauthor{\\Bc. Lukáš Paukert\\Vedoucí práce: Ing. Pavel Švagr\\} % Remove the command if you do not want the author on the title slide.
+\ctufitdate{10. června 2026} % Remove the command if you do not want the date on the title slide.
+\ctufitinstitute{FIT ČVUT} % Remove the command if you do not want the institution on the title slide.
 
 \begin{document}
 
@@ -54,75 +58,167 @@
 	\titlepage
 \end{frame}
 
-\begin{frame}
-	\frametitle{Nadpis}
-	\tableofcontents
-\end{frame}
+%\begin{frame}
+%	\frametitle{Nadpis}
+%	\tableofcontents
+%\end{frame}
 
 %=============================================================================================
 
-\section{Úvod}
+\section{Zadání}
 \begin{frame}
-	\frametitle{Slide}
-	\framesubtitle{Bodový seznam}
-	\begin{itemize}
-		\item První bod
-			\begin{itemize}
-				\item podbod
-				\item druhý podbod
-			\end{itemize}
-		\item Druhý bod
-			\begin{enumerate}
-				\item bod 1
-			\end{enumerate}
-		\item Třetí bod
-			\begin{description}
-				\item[Výzkum] \dots aneb vědecká honba za poznáním
-			\end{description}
-	\end{itemize}
+    \frametitle{Zadání}
+    \begin{itemize}
+        \item návrh a implementace webové aplikace prezentující aktivitu vývojářů
+        \item analýza metrik a webových API systémů GitHub a GitLab
+        \item konsolidace dat z VCS a párování uživatelských účtů
+        \item vizualizace metrik pomocí grafů
+        \item definice výzev a získávání „odznáčků“ za aktivitu
+        \item ověření implementovaného řešení uživatelským testováním
+    \end{itemize}
 \end{frame}
 
-\subsection{Text}
+\section{Analýza}
+\begin{frame}
+    \frametitle{Analýza}
+    \begin{itemize}
+        \item \textbf{Porovnání VCS platforem:} GitHub a GitLab API (REST vs. GraphQL)
+        \item \textbf{Metodiky:} SPACE framework a DORA metriky
+        \item \textbf{Motivace vývojářů a gamifikace}
+        \item \textbf{Uživatelské požadavky:} funkční a nefunkční požadavky
+        \item \textbf{Existující řešení:} Swarmia a LinearB
+    \end{itemize}
+\end{frame}
+
+\subsection{SPACE framework}
+\begin{frame}
+    \frametitle{Analýza}
+    \framesubtitle{SPACE framework}
+    \begin{itemize}
+        \item pomáhá porozumět produktivitě vývojářů pomocí různorodých aspektů
+        \item navržen zástupci univerzitní a komerční sféry
+        \item definuje 5 klíčových dimenzí
+        \item doporučeno sledovat metriky z minimálně 3 různých dimenzí
+        \item na jeho základě byly vybrány metriky, které lze získat z VCS platforem
+    \end{itemize}
+\end{frame}
+
+\section{Architektura a technologie}
+\begin{frame}
+    \frametitle{Architektura a technologie}
+    \begin{itemize}
+        \item \textbf{Architektura:}
+        \begin{itemize}
+            \item monolitická architektura, návrhový vzor MVC
+            \item Single Page Application
+        \end{itemize}
+        \item \textbf{Backend:} PHP 8, Laravel framework
+        \item \textbf{Frontend:} Vue.js, Highcharts
+        \item \textbf{Propojení vrstev:} knihovna Inertia.js
+        \item \textbf{Nasazení:} kontejnerizace pomocí technologie Docker
+    \end{itemize}
+\end{frame}
+
+\section{Implementace}
+\subsection{Integrace s VCS}
+\begin{frame}
+    \frametitle{Integrace s VCS}
+    \begin{itemize}
+        \item integrace s GitHub a GitLab GraphQL API
+        \item synchronizace dat pomocí plánovaných úloh
+        \item jednotné rozhraní pro synchronizaci dat
+        \item využití návrhových vzorů \textit{Factory} a \textit{Strategy}
+        \item transformace dat do společného datového modelu
+        \item jednoduchá rozšiřitelnost
+    \end{itemize}
+\end{frame}
+
 \begin{frame}[nobg]
-	\frametitle{Slide bez pozadí}
-	Tento slide nemá žádné pozadí.
+    \frametitle{Integrace s VCS}
+    \vspace{5pt}
+    \includegraphics[height=0.9\paperheight]{images/strategy-pattern.pdf}
 \end{frame}
 
-\subsection{Bloky}
+\begin{frame}[nobg]
+    \frametitle{Dashboard}
+    \vspace{5pt}
+    \includegraphics[height=0.9\paperheight, cfbox=lightgray 0.5pt 0pt]{images/dashboard.png}
+\end{frame}
+
+\begin{frame}[nobg]
+    \frametitle{Přiřazování VCS účtů}
+    \vspace{5pt}
+    \includegraphics[height=0.9\paperheight, cfbox=lightgray 0.5pt 0pt]{images/account-assignment.png}
+\end{frame}
+
+\begin{frame}[nobg]
+    \frametitle{Definice výzev}
+    \vspace{5pt}
+    \includegraphics[height=0.9\paperheight, cfbox=lightgray 0.5pt 0pt]{images/challenges.png}
+\end{frame}
+
+\section{Závěr}
 \begin{frame}
-	\frametitle{Bloky}
-	\begin{definition}[Pozdrav]
-		Hello World!
-	\end{definition}
-
-	\begin{alertblock}{Chyba.}
-		Něco zde nefunguje.
-	\end{alertblock}
-
-	\begin{exampleblock}{Správně!}
-		Toto je lepší.
-	\end{exampleblock}
-
-	\begin{block}{Seznam}
-		\begin{itemize}
-			\item Bodový seznam v bloku
-		\end{itemize}
-	\end{block}
-
+    \frametitle{Závěr}
+    \begin{itemize}
+        \item všechny cíle práce byly splněny
+        \item aplikace byla nasazena na PaaS Render
+        \item nedávná vylepšení
+        \begin{itemize}
+            \item zvýšení robustnosti synchronizační logiky při chybových stavech
+            \item drobné UI optimalizace a bezpečnostní aktualizace
+        \end{itemize}
+        \item budoucí rozvoj
+        \begin{itemize}
+            \item obohacení vizualizací
+            \item implementace pokročilého filtrování
+            \item rozšíření gamifikačních prvků
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 
 \begin{plainFrame}[colourbg]
 	\plainFrameText{Děkuji za pozornost}
 \end{plainFrame}
 
-\begin{plainFrame}
-	\begin{center}
-		\includegraphics[height=0.9\paperheight]{images/template/cvut-lion-blue.png}	
-	\end{center}
-\end{plainFrame}
+\begin{frame}
+    \frametitle{Posudek oponenta}
+    \begin{itemize}
+        \item výběr a interpretace metrik
+        \begin{itemize}
+            \item výběr založen na SPACE frameworku
+            \item metriky muselo být možné získat z platforem GitHub a GitLab
+            \item práce vývojáře nehodnotí, zobrazuje hodnoty vybraných metrik
+            \item interpretace je na uživatelích
+            \item Goodhartovo pravidlo (zákon)
+        \end{itemize}
+        \item Putnamův model (rovnice)
+        \item gamifikace
+        \item práce se zdroji
+    \end{itemize}
+\end{frame}
 
 \begin{frame}
-	\frametitle{Otázky?}
+    \frametitle{Otázky k obhajobě}
+    \begin{enumerate}
+        \item Mohl by autor exaktně definovat pojem gamifikace a uvést, jak konkrétně je tento koncept v jeho aplikaci matematicky a logicky implementován a co tato implementace znamená?
+        \begin{itemize}
+            \item gamifikace představuje využívání herních prvků a mechanik v neherních oblastech
+            \item implementována pomocí výzev, za které uživatel získává „pohárky“
+        \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Otázky k obhajobě}
+    \begin{enumerate}
+    \setcounter{enumi}{1}
+        \item Jakým způsobem jsou v navrženém systému eliminována rizika zkreslení výkonnosti vývojářů, která plynou z absolutního hodnocení povrchních metrik bez zohlednění všech počátečních podmínek?
+        \begin{itemize}
+            \item pomocí filtrů
+            \item určení počátečního datumu sběru dat
+        \end{itemize}
+    \end{enumerate}
 \end{frame}
 
 \end{document}
